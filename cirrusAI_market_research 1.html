@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cirrusAI Notes — Market Research & Product Strategy 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky:#2563eb;--sky-light:#3b82f6;--sky-pale:#eff6ff;--teal:#0d9488;
+    --ink:#0f172a;--ink-mid:#1e293b;--slate:#334155;--muted:#64748b;
+    --silver:#94a3b8;--border:#e2e8f0;--surface:#f8fafc;--white:#ffffff;
+    --amber:#d97706;--amber-pale:#fffbeb;--rose:#e11d48;
+    --green:#16a34a;--green-pale:#f0fdf4;--purple:#7c3aed;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"IBM Plex Sans",sans-serif;background:var(--surface);color:var(--ink);line-height:1.65;font-size:15px}
+  a.src{display:inline-flex;align-items:center;gap:3px;font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:500;color:var(--sky);text-decoration:none;border:1px solid #bfdbfe;background:#eff6ff;border-radius:3px;padding:1px 5px;vertical-align:middle;margin-left:3px;white-space:nowrap;transition:all .15s}
+  a.src:hover{background:var(--sky);color:#fff;border-color:var(--sky)}
+  a.src::before{content:"↗";font-size:9px}
+  .cover{background:var(--ink);color:var(--white);padding:64px 72px 56px;position:relative;overflow:hidden;border-bottom:1px solid rgba(37,99,235,.2)}
+  .cover::after{content:"";position:absolute;top:0;right:0;width:420px;height:100%;background:linear-gradient(135deg,transparent 40%,rgba(37,99,235,.1) 100%);pointer-events:none}
+  .cover-eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#60a5fa;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+  .cover-eyebrow::before{content:"";display:block;width:32px;height:1px;background:#3b82f6}
+  .cover h1{font-family:"Playfair Display",serif;font-size:52px;font-weight:800;line-height:1.08;max-width:700px;margin-bottom:20px;letter-spacing:-.5px}
+  .cover h1 em{font-style:normal;color:#60a5fa}
+  .cover-sub{font-size:17px;color:#94a3b8;font-weight:300;max-width:580px;margin-bottom:48px;line-height:1.7}
+  .cover-divider{width:64px;height:2px;background:linear-gradient(90deg,#3b82f6,#0d9488);margin-bottom:40px}
+  .cover-meta{display:grid;grid-template-columns:repeat(4,auto);gap:40px;justify-content:start;border-top:1px solid rgba(255,255,255,.08);padding-top:32px}
+  .meta-item{display:flex;flex-direction:column;gap:4px}
+  .meta-label{font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:#475569}
+  .meta-value{font-size:13px;font-weight:500;color:#cbd5e1}
+  .nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 72px;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,.06)}
+  .nav::-webkit-scrollbar{display:none}
+  .nav a{font-size:12.5px;font-weight:500;color:var(--muted);text-decoration:none;padding:14px 16px;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s}
+  .nav a:hover{color:var(--sky);border-bottom-color:var(--sky)}
+  .main{max-width:1060px;margin:0 auto;padding:56px 72px 96px}
+  .section{margin-bottom:72px}
+  .section-header{display:flex;align-items:baseline;gap:16px;margin-bottom:32px;padding-bottom:18px;border-bottom:2px solid var(--border)}
+  .section-num{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;color:var(--sky);letter-spacing:.1em;background:var(--sky-pale);padding:3px 8px;border-radius:3px}
+  .section-title{font-family:"Playfair Display",serif;font-size:26px;font-weight:700;color:var(--ink);letter-spacing:-.2px}
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:14px;margin-bottom:28px}
+  .stat-card{background:var(--white);border:1px solid var(--border);border-top:3px solid var(--accent,var(--sky));border-radius:6px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+  .stat-card.amber{--accent:var(--amber)}.stat-card.rose{--accent:var(--rose)}.stat-card.green{--accent:var(--green)}.stat-card.purple{--accent:var(--purple)}.stat-card.teal{--accent:var(--teal)}
+  .stat-number{font-family:"Playfair Display",serif;font-size:34px;font-weight:700;color:var(--accent,var(--sky));line-height:1;margin-bottom:6px}
+  .stat-label{font-size:12.5px;color:var(--muted);line-height:1.5}
+  .stat-source{margin-top:8px}
+  .callout{background:var(--sky-pale);border:1px solid #bfdbfe;border-left:4px solid var(--sky);border-radius:6px;padding:18px 22px;margin-bottom:22px;font-size:14px;line-height:1.7;color:var(--slate)}
+  .callout.amber{background:var(--amber-pale);border-color:#fde68a;border-left-color:var(--amber)}
+  .callout.green{background:var(--green-pale);border-color:#bbf7d0;border-left-color:var(--green)}
+  .callout.rose{background:#fff1f2;border-color:#fecdd3;border-left-color:var(--rose)}
+  .callout strong{color:var(--ink);font-weight:600}
+  .prose p{font-size:14.5px;color:var(--slate);margin-bottom:16px;font-weight:300;line-height:1.75}
+  .prose p strong{color:var(--ink);font-weight:600}
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:24px}
+  .card{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:22px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  .card-title{font-family:"IBM Plex Sans",sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+  .card-title .dot{width:8px;height:8px;border-radius:50%;background:var(--dot-color,var(--sky));flex-shrink:0}
+  .card ul{list-style:none;padding:0}
+  .card ul li{font-size:13px;color:var(--slate);padding:6px 0;border-bottom:1px solid #f1f5f9;line-height:1.5}
+  .card ul li:last-child{border-bottom:none}
+  .card ul li::before{content:"→ ";color:var(--sky);font-size:12px}
+  .table-wrap{overflow-x:auto;margin-bottom:24px;border-radius:8px;border:1px solid var(--border);box-shadow:0 1px 4px rgba(0,0,0,.04)}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;background:var(--white)}
+  thead tr{background:var(--ink)}
+  th{font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#94a3b8;padding:12px 14px;text-align:left}
+  td{padding:10px 14px;color:var(--slate);border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:var(--surface)}
+  tr.hlrow td{background:#eff6ff}
+  tr.hlrow td:first-child{border-left:3px solid var(--sky)}
+  .badge{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:500;padding:2px 7px;border-radius:3px}
+  .badge.ent{background:#f5f3ff;color:#6d28d9}
+  .badge.mid{background:#f0fdfa;color:#0f766e}
+  .badge.smb{background:#fffbeb;color:#b45309}
+  .badge.you{background:#eff6ff;color:#1d4ed8}
+  .sp-row{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+  .sp-name{font-size:13px;color:var(--slate);min-width:170px}
+  .sp-bg{flex:1;background:#f1f5f9;border-radius:100px;height:7px}
+  .sp-bar{height:7px;border-radius:100px;background:var(--sky)}
+  .sp-n{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);min-width:24px;text-align:right}
+  .matrix{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);border-radius:8px;overflow:hidden;margin-bottom:24px;border:1px solid var(--border)}
+  .mc{background:var(--white);padding:22px}
+  .mc h4{font-family:"IBM Plex Sans",sans-serif;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--cc,var(--muted));margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+  .mc.hh{--cc:var(--green)}.mc.hl{--cc:var(--sky)}.mc.lh{--cc:var(--amber)}.mc.ll{--cc:var(--silver)}
+  .mc ul{list-style:none;padding:0}
+  .mc ul li{font-size:12.5px;color:var(--slate);padding:4px 0}
+  .mc ul li::before{content:"▸ ";color:var(--cc,var(--muted))}
+  .rm-item{display:grid;grid-template-columns:130px 1fr;gap:24px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border);align-items:start}
+  .rm-item:last-child{border-bottom:none}
+  .phase{font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:4px;text-align:center;line-height:1.4}
+  .ph-now{background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0}
+  .ph-next{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe}
+  .ph-fut{background:#f5f3ff;color:#6d28d9;border:1px solid #ddd6fe}
+  .rm-content h4{font-family:"IBM Plex Sans",sans-serif;font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px}
+  .rm-content ul{list-style:none;padding:0}
+  .rm-content ul li{font-size:13px;color:var(--slate);padding:3px 0}
+  .rm-content ul li::before{content:"· ";color:var(--sky);font-weight:700}
+  .wf{position:relative;padding-left:36px;margin-bottom:24px}
+  .wf::before{content:"";position:absolute;left:11px;top:16px;bottom:16px;width:1px;background:linear-gradient(to bottom,var(--sky),var(--teal));opacity:.3}
+  .wf-step{position:relative;padding:12px 0 12px 16px}
+  .wf-step::before{content:"";position:absolute;left:-25px;top:18px;width:9px;height:9px;border-radius:50%;background:var(--sky);border:2px solid var(--surface)}
+  .wf-step h4{font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:3px}
+  .wf-step p{font-size:12.5px;color:var(--muted);margin:0}
+  .fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-bottom:24px}
+  .feat{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.03)}
+  .feat-e{font-size:20px;margin-bottom:8px}
+  .feat h4{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:5px}
+  .feat p{font-size:12.5px;color:var(--muted);line-height:1.55}
+  .sources{background:var(--ink);color:var(--white);padding:48px 72px}
+  .sources h2{font-family:"Playfair Display",serif;font-size:22px;font-weight:700;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .src-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}
+  .src-item{display:flex;flex-direction:column;gap:3px;padding:12px;background:rgba(255,255,255,.04);border-radius:6px;border:1px solid rgba(255,255,255,.07)}
+  .src-num{font-family:"IBM Plex Mono",monospace;font-size:10px;color:#60a5fa;font-weight:500}
+  .src-title{font-size:12.5px;color:#cbd5e1;font-weight:400;line-height:1.4}
+  .src-pub{font-size:11px;color:#475569}
+  .src-link{font-family:"IBM Plex Mono",monospace;font-size:10px;color:#60a5fa;text-decoration:none;word-break:break-all}
+  .src-link:hover{color:#93c5fd;text-decoration:underline}
+  .footer{background:#020617;padding:24px 72px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-top:1px solid rgba(255,255,255,.05)}
+  .footer p{font-size:11.5px;color:#334155;font-family:"IBM Plex Mono",monospace}
+  @media(max-width:700px){.cover,.nav,.main,.sources,.footer{padding-left:24px;padding-right:24px}.cover h1{font-size:32px}.cover-meta{grid-template-columns:1fr 1fr;gap:20px}.matrix{grid-template-columns:1fr}.rm-item{grid-template-columns:1fr}}
+</style></head><body>
+
+<div class="cover">
+  <div class="cover-eyebrow">Confidential · CareCloud Product Strategy</div>
+  <h1>cirrusAI Notes<br><em>Market Intelligence</em><br>&amp; Product Roadmap</h1>
+  <p class="cover-sub">A data-backed analysis of the ambient AI clinical documentation market, competitive landscape, specialty targeting, ED expansion opportunity, and feature roadmap for 2026–2028. All statistics linked to primary sources.</p>
+  <div class="cover-divider"></div>
+  <div class="cover-meta">
+    <div class="meta-item"><span class="meta-label">Prepared For</span><span class="meta-value">CEO / Product Leadership</span></div>
+    <div class="meta-item"><span class="meta-label">Platform</span><span class="meta-value">cirrusAI Notes · talkEHR · Wellsoft</span></div>
+    <div class="meta-item"><span class="meta-label">Date</span><span class="meta-value">May 2026</span></div>
+    <div class="meta-item"><span class="meta-label">Sources</span><span class="meta-value">18 peer-reviewed &amp; industry reports</span></div>
+  </div>
+</div>
+
+<nav class="nav">
+  <a href="#market">01 · Market Size</a>
+  <a href="#adoption">02 · Adoption</a>
+  <a href="#competitors">03 · Competitors</a>
+  <a href="#specialties">04 · Specialty Focus</a>
+  <a href="#ed">05 · ED Opportunity</a>
+  <a href="#features">06 · Feature Roadmap</a>
+  <a href="#voice">07 · Voice &amp; Translation</a>
+  <a href="#workflow">08 · Workflows</a>
+  <a href="#positioning">09 · Positioning</a>
+  <a href="#voicevalue">10 · Voice Agent Value</a>
+  <a href="#featurebench">11 · Feature Benchmarks</a>
+  <a href="#sources">All Sources</a>
+</nav>
+
+<div class="main">
+
+<div class="section" id="market">
+  <div class="section-header"><span class="section-num">01</span><h2 class="section-title">Market Size &amp; Growth Trajectory</h2></div>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-number">$7.2B</div><div class="stat-label">Global ambient clinical intelligence market, 2025</div><div class="stat-source"><a class="src" href="https://www.snsinsider.com/reports/ambient-clinical-intelligence-market-9747" target="_blank">SNS Insider 2026</a></div></div>
+    <div class="stat-card amber"><div class="stat-number">$56.6B</div><div class="stat-label">Projected global market by 2035 — 22.85% CAGR</div><div class="stat-source"><a class="src" href="https://www.snsinsider.com/reports/ambient-clinical-intelligence-market-9747" target="_blank">SNS Insider 2026</a></div></div>
+    <div class="stat-card green"><div class="stat-number">$2.87B</div><div class="stat-label">US-only ambient AI market 2025 → $16.25B by 2035</div><div class="stat-source"><a class="src" href="https://evolvancemarketresearch.com/reports/us-ambient-clinical-intelligence-solutions-market/" target="_blank">Evolvance Research</a></div></div>
+    <div class="stat-card purple"><div class="stat-number">2.4×</div><div class="stat-label">Year-over-year growth in ambient documentation, 2024→2025</div><div class="stat-source"><a class="src" href="https://www.getcodeshealth.com/blogs/ai-medical-documentation-statistics" target="_blank">GetCodesHealth 2026</a></div></div>
+    <div class="stat-card teal"><div class="stat-number">$600M</div><div class="stat-label">Ambient documentation revenue in 2025 — fastest-growing healthcare AI segment</div><div class="stat-source"><a class="src" href="https://www.getcodeshealth.com/blogs/ai-medical-documentation-statistics" target="_blank">GetCodesHealth 2026</a></div></div>
+    <div class="stat-card rose"><div class="stat-number">60%</div><div class="stat-label">Of all 2024 healthcare AI investment went to administrative AI</div><div class="stat-source"><a class="src" href="https://ventionteams.com/healthtech/ai/statistics" target="_blank">VentionTeams 2025</a></div></div>
+  </div>
+  <div class="callout green"><strong>Bottom line for the CEO:</strong> Ambient AI scribes are the single fastest-growing healthcare AI segment. The US market alone grows 5.7× by 2035. This is the dominant healthcare IT investment theme of 2025–2026 — with enterprise deals happening at scale right now. <a class="src" href="https://menlovc.com/perspective/2025-the-state-of-ai-in-healthcare/" target="_blank">Menlo Ventures 2025</a></div>
+  <div class="card-grid">
+    <div class="card"><div class="card-title"><span class="dot" style="--dot-color:var(--green)"></span>Key Demand Drivers</div><ul>
+      <li>62% of physicians cite documentation as their #1 burnout driver <a class="src" href="https://evolvancemarketresearch.com/reports/us-ambient-clinical-intelligence-solutions-market/" target="_blank">Evolvance</a></li>
+      <li>Physicians spend 4.5 hrs/day on EHR tasks (26% of work time) <a class="src" href="https://evolvancemarketresearch.com/reports/us-ambient-clinical-intelligence-solutions-market/" target="_blank">AMA via Evolvance</a></li>
+      <li>US physicians spent 125M hours on documentation in a single year <a class="src" href="https://www.healos.ai/blog/the-future-of-healthcare-documentation-why-ambient-clinical-intelligence-is-transforming-patient-care-in-2025" target="_blank">HealOS</a></li>
+      <li>$3.20 ROI per $1 invested, payback within 14 months <a class="src" href="https://www.demandsage.com/ai-in-healthcare-stats/" target="_blank">DemandSage 2026</a></li>
+      <li>Procurement cycles shortened 18% to 6.6 months — buying is accelerating <a class="src" href="https://www.getcodeshealth.com/blogs/ai-medical-documentation-statistics" target="_blank">GetCodesHealth</a></li>
+    </ul></div>
+    <div class="card"><div class="card-title"><span class="dot" style="--dot-color:var(--sky)"></span>Landmark Deployments (2025–2026)</div><ul>
+      <li>Kaiser Permanente: Abridge across 40 hospitals + 600+ medical offices — largest gen AI rollout in healthcare history <a class="src" href="https://menlovc.com/perspective/2025-the-state-of-ai-in-healthcare/" target="_blank">Menlo Ventures</a></li>
+      <li>DAX Copilot: 600+ organizations, 3M+ monthly encounters <a class="src" href="https://www.ehrsource.com/articles/ambient-ai-scribes-comparison/" target="_blank">EHR Source</a></li>
+      <li>VA nationwide ambient AI rollout — Dec 2025 <a class="src" href="https://www.soapnoteai.com/soap-note-guides-and-example/best-ai-medical-scribes-2026/" target="_blank">SOAPNoteAI</a></li>
+      <li>athenaAmbient launched Feb 2026 — included free with athenahealth <a class="src" href="https://www.ehrsource.com/articles/ambient-ai-scribes-comparison/" target="_blank">EHR Source</a></li>
+      <li>Mayo Clinic: $1B+ AI investment, 200+ projects <a class="src" href="https://menlovc.com/perspective/2025-the-state-of-ai-in-healthcare/" target="_blank">Menlo Ventures</a></li>
+    </ul></div>
+  </div>
+</div>
+
+<div class="section" id="adoption">
+  <div class="section-header"><span class="section-num">02</span><h2 class="section-title">Adoption Data — What's Actually Happening</h2></div>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-number">~65%</div><div class="stat-label">US hospitals on Epic EHR using ambient AI tools, June 2025</div><div class="stat-source"><a class="src" href="https://www.ajmc.com/view/ambient-ai-tool-adoption-in-us-hospitals-and-associated-factors" target="_blank">AJMC / JAMIA 2025</a></div></div>
+    <div class="stat-card green"><div class="stat-number">100%</div><div class="stat-label">Of 43 large US health systems report ambient AI adoption — the only AI use case at 100%</div><div class="stat-source"><a class="src" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12202002/" target="_blank">PMC / Scottsdale Inst.</a></div></div>
+    <div class="stat-card amber"><div class="stat-number">53%</div><div class="stat-label">Of health systems report high success with AI clinical documentation</div><div class="stat-source"><a class="src" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12202002/" target="_blank">PMC / Scottsdale Inst.</a></div></div>
+    <div class="stat-card purple"><div class="stat-number">7×</div><div class="stat-label">Increase in domain-specific AI adoption in healthcare organizations vs 2024</div><div class="stat-source"><a class="src" href="https://menlovc.com/perspective/2025-the-state-of-ai-in-healthcare/" target="_blank">Menlo Ventures 2025</a></div></div>
+    <div class="stat-card teal"><div class="stat-number">68%</div><div class="stat-label">Of physicians report increased use of AI for clinical documentation</div><div class="stat-source"><a class="src" href="https://ventionteams.com/healthtech/ai/statistics" target="_blank">VentionTeams 2025</a></div></div>
+    <div class="stat-card rose"><div class="stat-number">16 min</div><div class="stat-label">Documentation time saved per 8hrs of care — JAMA study, 1,800 clinicians, 5 academic centers</div><div class="stat-source"><a class="src" href="https://www.statnews.com/2026/04/01/ai-ambient-scribes-modest-time-savings-clinical-documentation/" target="_blank">STAT / JAMA 2026</a></div></div>
+  </div>
+  <div class="callout amber"><strong>The white space for cirrusAI:</strong> Adoption is concentrated at large health systems on Epic. Large hospitals are 1.48× more likely to adopt than smaller practices. <a class="src" href="https://www.ajmc.com/view/ambient-ai-tool-adoption-in-us-hospitals-and-associated-factors" target="_blank">AJMC / JAMIA 2025</a> Independent and mid-size practices — CareCloud's talkEHR base — are significantly underpenetrated. Winning this segment before enterprise players expand downmarket is the strategic window.</div>
+  <div class="prose">
+    <p><strong>Proven ROI from real-world deployments:</strong> The Permanente Medical Group reported 2.5 million AI scribe uses in one year with statistically significant reductions in note-taking time, time per appointment, and after-hours documentation. <a class="src" href="https://www.ama-assn.org/practice-management/digital-health/ai-scribes-save-15000-hours-and-restore-human-side-medicine" target="_blank">AMA 2025</a></p>
+    <p><strong>Burnout reduction is measurable:</strong> A JAMA Network Open study of 263 clinicians across 6 health systems found burnout fell from 51.9% to 38.8% after 30 days of ambient AI use — a 13.9 percentage point reduction. <a class="src" href="https://www.ehrsource.com/articles/ambient-ai-scribes-comparison/" target="_blank">EHR Source / JAMA 2025</a> A 2025 UCSF study found AI scribe users generated $3,044 more revenue/year and saw 0.8 more patients/week. <a class="src" href="https://www.commure.com/blog-scribe/ai-medical-scribe" target="_blank">Commure / JAMA 2025</a></p>
+  </div>
+</div>
+
+<div class="section" id="competitors">
+  <div class="section-header"><span class="section-num">03</span><h2 class="section-title">Competitive Landscape</h2></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Vendor</th><th>Tier</th><th>Price/Mo</th><th>Best For</th><th>EHR Depth</th><th>Key Differentiator</th><th>Gap vs cirrusAI</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Microsoft DAX Copilot</strong></td><td><span class="badge ent">Enterprise</span></td><td>~$600–700</td><td>100+ provider Epic/Meditech systems</td><td>Deep Epic native</td><td>Scale, human QA, Spanish encounters</td><td>No talkEHR/CCH/Wellsoft; heavy IT setup</td><td><a class="src" href="https://orbdoc.com/learn/ai-medical-scribe-pricing-guide/" target="_blank">OrbDoc Pricing</a></td></tr>
+        <tr><td><strong>Abridge</strong></td><td><span class="badge ent">Enterprise</span></td><td>~$208+</td><td>Large health systems on Epic</td><td>Epic Haiku/Hyperdrive native</td><td>Best in KLAS 2025 &amp; 2026, 50+ specialties, 28+ languages</td><td>Enterprise-only; no independent practice path</td><td><a class="src" href="https://www.ehrsource.com/articles/ambient-ai-scribes-comparison/" target="_blank">EHR Source 2026</a></td></tr>
+        <tr><td><strong>Ambience Healthcare</strong></td><td><span class="badge ent">Enterprise</span></td><td>Custom</td><td>Large health systems; 85-specialty</td><td>Custom + Epic Toolbox</td><td>85-specialty platform; $70M Series B Mar 2025</td><td>SMB-inaccessible; no RCM/appeals</td><td><a class="src" href="https://evolvancemarketresearch.com/reports/us-ambient-clinical-intelligence-solutions-market/" target="_blank">Evolvance</a></td></tr>
+        <tr><td><strong>Suki AI</strong></td><td><span class="badge mid">Mid-Market</span></td><td>$199–399</td><td>Voice workflow automation</td><td>Epic, Athena (moderate)</td><td>Voice commands for orders, referrals, data retrieval</td><td>No talkEHR; no freemium</td><td><a class="src" href="https://orbdoc.com/compare/ai-medical-scribe-comparison-2025/" target="_blank">OrbDoc Compare</a></td></tr>
+        <tr><td><strong>DeepScribe</strong></td><td><span class="badge mid">Mid-Market</span></td><td>~$750</td><td>Specialty practices; E/M coding</td><td>Athena, eCW, Epic, AdvancedMD</td><td>98.8 KLAS score; automated E/M coding</td><td>Expensive; no talkEHR; no appeals</td><td><a class="src" href="https://www.getfreed.ai/resources/best-ai-scribes" target="_blank">Freed Guide 2026</a></td></tr>
+        <tr><td><strong>Nabla</strong></td><td><span class="badge mid">Mid-Market</span></td><td>Custom</td><td>Larger systems; strong privacy</td><td>Moderate connectors</td><td>Sub-20s notes; zero data storage; real-time CDS</td><td>No RCM; enterprise focus</td><td><a class="src" href="https://www.getfreed.ai/resources/best-ai-scribes" target="_blank">Freed Guide 2026</a></td></tr>
+        <tr><td><strong>Freed AI</strong></td><td><span class="badge smb">SMB</span></td><td>$99–149</td><td>Solo and small practices</td><td>Copy-paste (no write-back)</td><td>Simplest onboarding; no IT required</td><td>No EHR write-back; no coding; no admin tools</td><td><a class="src" href="https://www.ehrsource.com/articles/ambient-ai-scribes-comparison/" target="_blank">EHR Source 2026</a></td></tr>
+        <tr><td><strong>athenaAmbient</strong></td><td><span class="badge smb">SMB</span></td><td>Free (bundled)</td><td>Existing athenahealth users</td><td>Native (athena only)</td><td>Zero additional cost; built-in</td><td>Athena-only; limited features</td><td><a class="src" href="https://www.ehrsource.com/articles/ambient-ai-scribes-comparison/" target="_blank">EHR Source 2026</a></td></tr>
+        <tr class="hlrow"><td><strong>cirrusAI Notes</strong></td><td><span class="badge you">Embedded</span></td><td>Freemium + PRO</td><td>talkEHR / CCH / Wellsoft practices</td><td>talkEHR native · CCH native · Wellsoft (build)</td><td>Deep EHR embed + RCM + appeals + freemium entry</td><td><em>Build:</em> multilingual, ED workflow, specialty depth, AI chat</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout green"><strong>cirrusAI's defensible moat:</strong> Native integration with talkEHR and CareCloud Health plus built-in insurance appeals automation is unique in the market. AI scribe costs run $99–$1,000/provider/month vs $45,000–$65,000/year for human scribes — a 60–75% cost reduction with ROI in 3–12 months. <a class="src" href="https://www.ehrsource.com/articles/ambient-ai-scribes-comparison/" target="_blank">EHR Source 2026</a></div>
+</div>
+
+<div class="section" id="specialties">
+  <div class="section-header"><span class="section-num">04</span><h2 class="section-title">Specialty Strategy — Where to Focus</h2></div>
+  <div class="prose"><p>Current cirrusAI Notes user base (86 providers) cross-referenced with CareCloud / talkEHR Specialty Summaries (EHR data provided). Chart below shows current cirrusAI adoption by specialty.</p></div>
+  <div style="background:var(--white);border:1px solid var(--border);border-radius:6px;padding:24px;margin-bottom:28px;">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;">Current cirrusAI Notes Users by Specialty — Internal Data (n=86)</p>
+    <div class="sp-row"><span class="sp-name">Internal Medicine</span><div class="sp-bg"><div class="sp-bar" style="width:26%"></div></div><span class="sp-n">22</span></div>
+    <div class="sp-row"><span class="sp-name">Podiatry</span><div class="sp-bg"><div class="sp-bar" style="width:12%"></div></div><span class="sp-n">10</span></div>
+    <div class="sp-row"><span class="sp-name">Urgent Care</span><div class="sp-bg"><div class="sp-bar" style="width:9%"></div></div><span class="sp-n">8</span></div>
+    <div class="sp-row"><span class="sp-name">Gynecology</span><div class="sp-bg"><div class="sp-bar" style="width:9%"></div></div><span class="sp-n">8</span></div>
+    <div class="sp-row"><span class="sp-name">Family Practice</span><div class="sp-bg"><div class="sp-bar" style="width:8%"></div></div><span class="sp-n">7</span></div>
+    <div class="sp-row"><span class="sp-name">Psychology</span><div class="sp-bg"><div class="sp-bar" style="width:7%"></div></div><span class="sp-n">6</span></div>
+    <div class="sp-row"><span class="sp-name">Physical Medicine</span><div class="sp-bg"><div class="sp-bar" style="width:6%"></div></div><span class="sp-n">5</span></div>
+    <div class="sp-row"><span class="sp-name">Pain Management</span><div class="sp-bg"><div class="sp-bar" style="width:4%"></div></div><span class="sp-n">3</span></div>
+    <div class="sp-row"><span class="sp-name">Primary Care</span><div class="sp-bg"><div class="sp-bar" style="width:4%"></div></div><span class="sp-n">3</span></div>
+    <div class="sp-row"><span class="sp-name">Orthopedic</span><div class="sp-bg"><div class="sp-bar" style="width:2%"></div></div><span class="sp-n">2</span></div>
+    <div class="sp-row"><span class="sp-name">Others (8 specialties)</span><div class="sp-bg"><div class="sp-bar" style="width:9%"></div></div><span class="sp-n">8</span></div>
+  </div>
+  <div class="matrix">
+    <div class="mc hh"><h4>🟢 Invest Now — High Volume + EHR Overlap</h4><ul>
+      <li><strong>Internal Medicine</strong> — 22 users; largest EHR base; narrative-heavy notes ideal for ambient AI</li>
+      <li><strong>Family Practice / Primary Care</strong> — 10 users; highest encounter volume; proven best ROI for ambient AI <a class="src" href="https://glass.health/resources/best-ai-medical-scribe" target="_blank">Glass Health</a></li>
+      <li><strong>Urgent Care</strong> — 8 users + Wellsoft EDIS = major strategic unlock</li>
+      <li><strong>Gynecology / OBGYN</strong> — 8 users + strong CCH base (17 CCH clients in EHR summary data)</li>
+    </ul></div>
+    <div class="mc hl"><h4>🔵 Build Depth — Strong Users, Need Templates</h4><ul>
+      <li><strong>Psychology / Behavioral Health</strong> — 6 users; psychiatrists spend avg 3 hrs/day on documentation <a class="src" href="https://www.medrxiv.org/content/10.1101/2025.09.21.25336260.full.pdf" target="_blank">MedRxiv 2025</a></li>
+      <li><strong>Physical Medicine / Rehab</strong> — 5 users; structured documentation (ROM, functional assessment, treatment units)</li>
+      <li><strong>Pain Management</strong> — 3 users; complex HPI/assessment; high RCM complexity</li>
+      <li><strong>Podiatry</strong> — 10 users; nearly zero competitor specialty depth here — own this niche</li>
+    </ul></div>
+    <div class="mc lh"><h4>🟡 Strategic Expansion — Wellsoft Bridgehead</h4><ul>
+      <li><strong>Emergency Medicine</strong> — 0 cirrusAI users today; Wellsoft is #1 Black Book 2026 for ED <a class="src" href="https://www.stocktitan.net/news/CCLDO/care-cloud-s-wellsoft-ranked-1-ehr-by-black-book-2026-for-emergency-nuemzn5z7751.html" target="_blank">CareCloud Jan 2026</a></li>
+      <li><strong>Urgent Care</strong> — Affinity UC deal (Houston) is first live proof point <a class="src" href="https://finance.yahoo.com/news/carecloud-brings-wellsoft-urgent-care-130000444.html" target="_blank">CareCloud Press Release</a></li>
+      <li>~11,000 urgent care facilities + ~5,100 EDs in US addressable via Wellsoft</li>
+    </ul></div>
+    <div class="mc ll"><h4>⚪ Watch &amp; Wait</h4><ul>
+      <li>Oncology — 2 users; highly specialized; Ambience dominates</li>
+      <li>Cardiology — high tech requirements; Epic-heavy; complex visit types</li>
+      <li>Neurology — 1 user; Glass Health / cognitive specialty tools lead</li>
+      <li>Ophthalmology — 1 user; procedural; low ambient documentation value</li>
+    </ul></div>
+  </div>
+  <div class="callout"><strong>Top 3 Next Specialty Targets:</strong> (1) <strong>Behavioral Health / Psychology</strong> — 3 hrs/day documentation burden; ambient AI preserves patient quotes critical for mental health <a class="src" href="https://www.medrxiv.org/content/10.1101/2025.09.21.25336260.full.pdf" target="_blank">MedRxiv 2025</a>; (2) <strong>Podiatry</strong> — 10 existing users, build specialty templates to retain and grow; (3) <strong>OBGYN</strong> — strong CCH EHR base, multilingual patient population aligns with translation feature <a class="src" href="https://academic.oup.com/jamia/article/33/2/255/8364687" target="_blank">JAMIA 2025</a>.</div>
+</div>
+
+<div class="section" id="ed">
+  <div class="section-header"><span class="section-num">05</span><h2 class="section-title">Emergency Department — CareCloud's Uncontested Opportunity</h2></div>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-number">~5,100</div><div class="stat-label">Emergency departments in the US</div><div class="stat-source"><a class="src" href="https://www.aha.org/aha-center-health-innovation-market-scan/2026-04-14-6-health-systems-enhancing-care-delivery-ambient-ai-scribes" target="_blank">AHA 2026</a></div></div>
+    <div class="stat-card amber"><div class="stat-number">~11,000</div><div class="stat-label">Urgent care facilities in the US — Wellsoft's direct new target market</div><div class="stat-source"><a class="src" href="https://finance.yahoo.com/news/carecloud-brings-wellsoft-urgent-care-130000444.html" target="_blank">CareCloud Press Release Jan 2026</a></div></div>
+    <div class="stat-card green"><div class="stat-number">#1</div><div class="stat-label">Wellsoft ranked #1 EHR for Emergency Medicine — Black Book Research 2026</div><div class="stat-source"><a class="src" href="https://www.stocktitan.net/news/CCLDO/care-cloud-s-wellsoft-ranked-1-ehr-by-black-book-2026-for-emergency-nuemzn5z7751.html" target="_blank">CareCloud / Black Book Jan 2026</a></div></div>
+    <div class="stat-card purple"><div class="stat-number">27%</div><div class="stat-label">Reduction in notes time per appointment with ambient AI in ED — Intermountain Health, DAX Copilot 2025</div><div class="stat-source"><a class="src" href="https://www.aha.org/aha-center-health-innovation-market-scan/2026-04-14-6-health-systems-enhancing-care-delivery-ambient-ai-scribes" target="_blank">AHA / Intermountain 2025</a></div></div>
+  </div>
+  <div class="callout green"><strong>The strategic moat:</strong> CareCloud owns Wellsoft — ranked #1 ED EHR by Black Book 2026. No ambient AI competitor has native integration with a purpose-built EDIS. DAX Copilot and Abridge are built on Epic's ED module. <strong>cirrusAI Notes natively embedded in Wellsoft = the only ambient AI scribe on the market's top-rated ED information system.</strong> <a class="src" href="https://finance.yahoo.com/news/carecloud-brings-wellsoft-urgent-care-130000444.html" target="_blank">CareCloud Press Release</a></div>
+  <div class="card-grid">
+    <div class="card"><div class="card-title"><span class="dot" style="--dot-color:var(--rose)"></span>Why ED is Hard — Why Competitors Fail Here</div><ul>
+      <li>Multiple interruptions mid-encounter — current apps can't handle pause/resume well <a class="src" href="https://formative.jmir.org/2026/1/e80401" target="_blank">JMIR Formative 2026</a></li>
+      <li>Non-linear workflow — patient seen multiple times, notes built iteratively</li>
+      <li>High-noise environments — standard speech recognition degrades significantly</li>
+      <li>Multi-team documentation: resident, nurse, attending all document same patient</li>
+      <li>Pediatric ED quality gap — AI scored lower on pediatric note quality <a class="src" href="https://www.annemergmed.com/article/S0196-0644(25)01300-9/fulltext" target="_blank">Annals EM 2025</a></li>
+      <li>Resuscitation zones excluded in early studies — model gap exists <a class="src" href="https://www.annemergmed.com/article/S0196-0644(25)01458-1/fulltext" target="_blank">Annals EM 2026</a></li>
+    </ul></div>
+    <div class="card"><div class="card-title"><span class="dot" style="--dot-color:var(--green)"></span>Evidence It Works — Early ED Pilot Data</div><ul>
+      <li>JAMA study (5 academic EDs, 2023–2025): 13.4 min less total EHR time + 16 min less documentation time per provider per day <a class="src" href="https://www.aha.org/aha-center-health-innovation-market-scan/2026-04-14-6-health-systems-enhancing-care-delivery-ambient-ai-scribes" target="_blank">AHA / JAMA 2026</a></li>
+      <li>0.49 more patient visits/week per clinician using AI scribe</li>
+      <li>Note quality comparable to human scribes for adult patients (Mayo Clinic pilot, Dec 2024–Jan 2025) <a class="src" href="https://www.annemergmed.com/article/S0196-0644(25)01300-9/fulltext" target="_blank">Annals EM 2025</a></li>
+      <li>AI-generated ED handoff summaries showing strong results (JAMA Network Open 2024) <a class="src" href="https://formative.jmir.org/2026/1/e80401" target="_blank">JMIR Formative</a></li>
+    </ul></div>
+  </div>
+  <div class="rm-item"><div class="phase ph-now">Phase 1</div><div class="rm-content"><h4>Urgent Care via Wellsoft — First Live Deployment</h4><ul><li>Embed cirrusAI Notes in Wellsoft for urgent care clients (Affinity UC as pilot)</li><li>UC-specific note templates: chief complaint, rapid HPI, MDM documentation</li><li>Pause/resume recording optimized for interrupted encounters</li><li>Background noise suppression tuned for clinical environments</li></ul></div></div>
+  <div class="rm-item"><div class="phase ph-next">Phase 2</div><div class="rm-content"><h4>Full ED Integration with Wellsoft</h4><ul><li>Wellsoft-native embed linked to chart/encounter number — auto session creation</li><li>Multi-note types: triage, physician, nursing, disposition, shift handoff</li><li>Multi-provider speaker identification (MD vs NP vs RN per segment)</li><li>Real-time MDM complexity support + ED CPT code suggestions (99281–99285)</li></ul></div></div>
+  <div class="rm-item"><div class="phase ph-fut">Phase 3</div><div class="rm-content"><h4>ED Intelligence Layer — The Vision</h4><ul><li>Real-time multilingual patient communication for non-English-speaking ED patients</li><li>Patient discharge instructions auto-generated in patient's language</li><li>Sepsis/deterioration keyword flagging from ambient conversation</li><li>AI-generated per-shift department summary for operations and quality reporting</li></ul></div></div>
+</div>
+
+<div class="section" id="features">
+  <div class="section-header"><span class="section-num">06</span><h2 class="section-title">Feature Roadmap — What to Build &amp; When</h2></div>
+  <div style="margin-bottom:28px;">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:14px;">🟢 Phase 1 — Immediate Priority</p>
+    <div class="fg">
+      <div class="feat"><div class="feat-e">🩺</div><h4>Specialty-Specific Templates v2</h4><p>Deep templates for Behavioral Health (biopsychosocial SOAP), Podiatry, OBGYN, Pain Management. Ambience won with 85 specialties — depth is the proven differentiator. <a class="src" href="https://evolvancemarketresearch.com/reports/us-ambient-clinical-intelligence-solutions-market/" target="_blank">Evolvance</a></p></div>
+      <div class="feat"><div class="feat-e">⏸️</div><h4>Smart Pause / Resume</h4><p>Auto-detects silence and room exits. Tap or voice command to pause. Critical for ED and urgent care — cited as the primary barrier to ambient AI adoption in ED settings. <a class="src" href="https://formative.jmir.org/2026/1/e80401" target="_blank">JMIR Formative 2026</a></p></div>
+      <div class="feat"><div class="feat-e">📊</div><h4>Note Quality Feedback Loop</h4><p>Post-note thumbs up/down + one-tap reason. Model learns from edits. Track edit rate and same-day closure — the two most important product health signals. <a class="src" href="https://www.ehrsource.com/articles/ambient-ai-scribes-comparison/" target="_blank">EHR Source</a></p></div>
+      <div class="feat"><div class="feat-e">📄</div><h4>Patient-Friendly Visit Summary</h4><p>Plain-language patient summary auto-generated alongside the clinical note. Abridge's most-loved feature — patient engagement differentiator. <a class="src" href="https://www.ehrsource.com/articles/ambient-ai-scribes-comparison/" target="_blank">EHR Source</a></p></div>
+    </div>
+  </div>
+  <div style="margin-bottom:28px;">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--sky);margin-bottom:14px;">🔵 Phase 2 — Next Priority</p>
+    <div class="fg">
+      <div class="feat"><div class="feat-e">💬</div><h4>AI Chat Assistant — Clinical Q&amp;A</h4><p>Context-aware in-app assistant: drug interactions, dosing, prior auth drafts, CPT queries, and more. Knows the current patient and draft note. Suki proved the demand. <a class="src" href="https://orbdoc.com/compare/ai-medical-scribe-comparison-2025/" target="_blank">OrbDoc</a></p></div>
+      <div class="feat"><div class="feat-e">🌐</div><h4>Real-Time Voice Translator</h4><p>Bidirectional voice interpreter (20+ languages) built into the encounter. Translated session feeds directly into ambient note — zero duplicate workflow. Microsoft launched Spanish support in 2025; parity then surpass. <a class="src" href="https://slator.com/microsoft-new-healthcare-voice-ai-enables-encounters-spanish-without-translator/" target="_blank">Slator / Microsoft 2025</a></p></div>
+      <div class="feat"><div class="feat-e">🏥</div><h4>Wellsoft ED Native Integration</h4><p>Ambient note generation embedded in Wellsoft. ED note types: triage, physician, disposition, handoff. Multi-provider aware. The platform moat no competitor can replicate. <a class="src" href="https://www.stocktitan.net/news/CCLDO/care-cloud-s-wellsoft-ranked-1-ehr-by-black-book-2026-for-emergency-nuemzn5z7751.html" target="_blank">CareCloud Jan 2026</a></p></div>
+      <div class="feat"><div class="feat-e">📋</div><h4>Pre-Visit Chart Brief</h4><p>Before the visit: AI summary of last encounter, active medications, flagged conditions. 30-second briefing card for the provider. Reduces cognitive load and improves note quality from sentence one.</p></div>
+    </div>
+  </div>
+  <div>
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--purple);margin-bottom:14px;">🟣 Phase 3 — Vision Features</p>
+    <div class="fg">
+      <div class="feat"><div class="feat-e">⚖️</div><h4>Audit-Ready Documentation</h4><p>Every note claim linked to conversation timestamp. Configurable audio retention. OrbDoc charges $199/mo for this alone — addresses a real payer audit and liability concern. <a class="src" href="https://orbdoc.com/compare/ai-medical-scribe-comparison-2025/" target="_blank">OrbDoc</a></p></div>
+      <div class="feat"><div class="feat-e">🤖</div><h4>Agentic Workflow Automation</h4><p>From conversation, auto-trigger: prior auth draft, referral letter, lab order pre-fill, follow-up scheduling reminder. The transition from scribe to full encounter automation platform. <a class="src" href="https://menlovc.com/perspective/2025-the-state-of-ai-in-healthcare/" target="_blank">Menlo Ventures 2025</a></p></div>
+      <div class="feat"><div class="feat-e">🧠</div><h4>Differential Diagnosis Support</h4><p>Ambient note plus inline AI-generated DDx and A&amp;P suggestions. Glass Health's core differentiator — highest value in Internal Medicine, Psychiatry, and complex cognitive specialties. <a class="src" href="https://glass.health/resources/best-ai-medical-scribe" target="_blank">Glass Health 2026</a></p></div>
+      <div class="feat"><div class="feat-e">🎙️</div><h4>Wearable / Hands-Free Capture</h4><p>Badge or shirt-clip wearable microphone support. Especially valuable in procedural specialties, surgery, and ED. Augmedix leads in this segment. <a class="src" href="https://www.sully.ai/blog/best-10-ai-medical-scribes-in-2025" target="_blank">Sully / Augmedix</a></p></div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="voice">
+  <div class="section-header"><span class="section-num">07</span><h2 class="section-title">Voice AI &amp; Real-Time Translation</h2></div>
+  <div class="prose">
+    <p>The medical interpreter market is a <strong>$10B+ industry in the US</strong>. Over 25 million Americans have Limited English Proficiency — language barriers in clinical settings lead to diagnostic errors, readmissions, and compliance violations when family members serve as ad-hoc interpreters. Microsoft Dragon Copilot validated market readiness by launching Spanish encounter support in 2025. <a class="src" href="https://slator.com/microsoft-new-healthcare-voice-ai-enables-encounters-spanish-without-translator/" target="_blank">Slator / Microsoft Mar 2025</a> The feature must be matched, then surpassed.</p>
+  </div>
+  <div class="card-grid">
+    <div class="card"><div class="card-title"><span class="dot" style="--dot-color:var(--amber)"></span>What Competitors Are Doing</div><ul>
+      <li>Microsoft Dragon Copilot: Spanish ↔ English encounters; English notes auto-generated <a class="src" href="https://slator.com/microsoft-new-healthcare-voice-ai-enables-encounters-spanish-without-translator/" target="_blank">Slator 2025</a></li>
+      <li>Abridge: 28+ languages in note generation <a class="src" href="https://deepcura.zendesk.com/hc/en-us/articles/43254105925140-Top-AI-Medical-Scribes-in-2025-A-Comprehensive-Guide" target="_blank">DeepCura Guide</a></li>
+      <li>Care to Translate: 130+ languages, offline-capable, verified phrase library <a class="src" href="https://www.caretotranslate.com/" target="_blank">Care to Translate</a></li>
+      <li>Sully Medical Interpreter: Real-time multilingual, Epic-connected <a class="src" href="https://www.sully.ai/ai-medical-employees/sully-the-medical-interpreter" target="_blank">Sully.ai</a></li>
+      <li>No Barrier: HIPAA-compliant AI medical interpreting, ED-to-telehealth <a class="src" href="https://www.nobarrier.ai/" target="_blank">No Barrier</a></li>
+    </ul></div>
+    <div class="card"><div class="card-title"><span class="dot" style="--dot-color:var(--sky)"></span>cirrusAI Translation — Proposed Design</div><ul>
+      <li>Provider speaks English → real-time TTS in patient's language (&lt;2s latency)</li>
+      <li>Patient speaks native language → real-time English caption on provider's screen</li>
+      <li>Entire bilingual session feeds into ambient note generation — same session, no duplication</li>
+      <li>Clinical note in English; patient discharge summary in patient's language</li>
+      <li>Priority: Spanish, Mandarin, Arabic, Vietnamese, Tagalog, French, Portuguese, Russian (~90% US LEP population)</li>
+      <li>HIPAA: encrypted pipeline; no third-party data exposure</li>
+    </ul></div>
+  </div>
+  <div class="callout green"><strong>The unique angle:</strong> Every standalone medical interpreter app requires a separate note-creation workflow. cirrusAI combines both in one uninterrupted session — the translated encounter <em>is</em> the note source. Zero extra workflow. No standalone translation app can replicate this integration advantage.</div>
+  <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:16px;">Bilingual Encounter Workflow — How It Works</p>
+  <div class="wf">
+    <div class="wf-step"><h4>1 · Provider selects patient's language at encounter start</h4><p>One tap. Language auto-detected from patient chart demographics or manually selected.</p></div>
+    <div class="wf-step"><h4>2 · Provider speaks English — patient hears translated audio</h4><p>Real-time TTS output through phone speaker. Medically fine-tuned, not consumer translation.</p></div>
+    <div class="wf-step"><h4>3 · Patient speaks native language — provider reads English live caption</h4><p>Real-time transcript in English on provider's screen. Clinical terminology auto-contextualized.</p></div>
+    <div class="wf-step"><h4>4 · Single tap at end generates both documents</h4><p>English clinical note (for EHR) + patient-language discharge summary (for portal/printout).</p></div>
+    <div class="wf-step"><h4>5 · Note auto-populates into talkEHR / CCH / Wellsoft</h4><p>Provider reviews, edits, signs. Interpreter cost: $0. Session duration: identical to English-only visit.</p></div>
+  </div>
+</div>
+
+<div class="section" id="workflow">
+  <div class="section-header"><span class="section-num">08</span><h2 class="section-title">Workflow Differentiation — How the Best Apps Do It</h2></div>
+  <div class="prose"><p>The largest gap between good and great ambient AI tools is not transcription accuracy — it is workflow fit. Accuracy is table stakes at 95–98% across all major platforms. <a class="src" href="https://www.ehrsource.com/articles/ambient-ai-scribes-comparison/" target="_blank">EHR Source 2026</a> What differentiates is how the tool integrates into the provider's actual day across pre-visit, encounter, post-encounter, and billing phases.</p></div>
+  <div class="card-grid">
+    <div class="card"><div class="card-title"><span class="dot" style="--dot-color:var(--sky)"></span>Standard Ambulatory (What Most Apps Do)</div><ul>
+      <li><strong>Pre-visit:</strong> Provider manually reviews chart</li>
+      <li><strong>Encounter:</strong> Start recording; speak naturally with patient</li>
+      <li><strong>Post-encounter:</strong> AI generates draft note (30s–2min)</li>
+      <li><strong>Review:</strong> Provider edits draft; accepts into EHR</li>
+      <li><strong>Billing:</strong> Separate workflow; some add CPT suggestion</li>
+    </ul></div>
+    <div class="card"><div class="card-title"><span class="dot" style="--dot-color:var(--amber)"></span>ED / Urgent Care (What cirrusAI Needs to Add)</div><ul>
+      <li><strong>Triage entry:</strong> Brief nurse intake capture (separate note type)</li>
+      <li><strong>Iterative encounter:</strong> Pause/resume as provider leaves and returns</li>
+      <li><strong>Multi-team:</strong> Log who spoke (MD vs NP vs RN) per segment</li>
+      <li><strong>Disposition:</strong> Dedicated note + discharge instructions in patient's language</li>
+      <li><strong>Handoff:</strong> AI-generated shift handoff document</li>
+    </ul></div>
+    <div class="card"><div class="card-title"><span class="dot" style="--dot-color:var(--purple)"></span>Behavioral Health (Psychology — 6 users today)</div><ul>
+      <li><strong>Confidential mode:</strong> Audio processing options; consent workflow built-in</li>
+      <li><strong>Verbatim patient quotes preserved</strong> in subjective section — critical for longitudinal mental health <a class="src" href="https://www.commure.com/blog-scribe/ai-medical-scribe" target="_blank">Commure Guide</a></li>
+      <li><strong>Mood/affect/ideation</strong> recognized and auto-structured</li>
+      <li><strong>PHQ-9 / GAD-7</strong> scores captured from verbal patient responses</li>
+      <li><strong>3 note types:</strong> progress note, intake, crisis note</li>
+    </ul></div>
+    <div class="card"><div class="card-title"><span class="dot" style="--dot-color:var(--green)"></span>AI Chat Assistant — In-App Clinical Q&amp;A Design</div><ul>
+      <li>Context-aware: knows current patient, draft note, encounter type</li>
+      <li>"What's first-line treatment for X per current guidelines?"</li>
+      <li>"Draft a prior auth letter for this diagnosis and plan"</li>
+      <li>"What CPT codes apply to this MDM level and visit type?"</li>
+      <li>"Translate these discharge instructions to Spanish"</li>
+      <li>"Flag drug interactions in this medication list"</li>
+      <li>Clearly framed as reference tool — does not replace clinical judgment</li>
+    </ul></div>
+  </div>
+  <div class="callout"><strong>The workflow insight from market leaders:</strong> Suki proved providers want voice commands for far more than note-taking. <a class="src" href="https://orbdoc.com/compare/ai-medical-scribe-comparison-2025/" target="_blank">OrbDoc</a> Glass Health proved combining ambient notes with clinical decision support is highly valued by internists and psychiatrists. <a class="src" href="https://glass.health/resources/best-ai-medical-scribe" target="_blank">Glass Health 2026</a> <strong>The vision for cirrusAI is an ambient intelligence layer across the entire encounter workflow — not just note-generation.</strong></div>
+</div>
+
+<div class="section" id="positioning">
+  <div class="section-header"><span class="section-num">09</span><h2 class="section-title">Market Positioning, TAM &amp; The 3-Year Vision</h2></div>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-number">~900K</div><div class="stat-label">Active physicians in US ambulatory practice — talkEHR's total addressable market</div></div>
+    <div class="stat-card amber"><div class="stat-number">~55K</div><div class="stat-label">Emergency medicine physicians in the US — Wellsoft's direct physician universe</div></div>
+    <div class="stat-card green"><div class="stat-number">$99–700</div><div class="stat-label">Monthly price range across the market — cirrusAI freemium is the lowest barrier to entry</div><div class="stat-source"><a class="src" href="https://orbdoc.com/learn/ai-medical-scribe-pricing-guide/" target="_blank">OrbDoc Pricing Guide</a></div></div>
+    <div class="stat-card teal"><div class="stat-number">~7%</div><div class="stat-label">Industry-average AI hallucination rate — physical exam documentation most vulnerable; every note needs provider review</div><div class="stat-source"><a class="src" href="https://www.ehrsource.com/articles/ambient-ai-scribes-comparison/" target="_blank">EHR Source 2026</a></div></div>
+  </div>
+  <div class="callout"><strong>Positioning statement:</strong> "cirrusAI Notes is the ambient clinical intelligence platform built into the tools independent and mid-size practices already use — not another standalone app. Start a note in talkEHR, end it in your EHR, automatically. With built-in coding support, insurance appeals, and real-time multilingual care."</div>
+  <div class="card-grid">
+    <div class="card"><div class="card-title"><span class="dot" style="--dot-color:var(--sky)"></span>Key Differentiators to Amplify</div><ul>
+      <li>Only ambient AI with native talkEHR + CareCloud + Wellsoft ED integration</li>
+      <li>Freemium model — 200 free points/month, zero barrier to trial</li>
+      <li>Insurance appeals automation built-in — no competitor bundles RCM + ambient scribe</li>
+      <li>Real-time bilingual encounter support (build this — clear market gap) <a class="src" href="https://slator.com/microsoft-new-healthcare-voice-ai-enables-encounters-spanish-without-translator/" target="_blank">Slator 2025</a></li>
+      <li>ED-first with Wellsoft #1 Black Book 2026 — uncontested lane <a class="src" href="https://www.stocktitan.net/news/CCLDO/care-cloud-s-wellsoft-ranked-1-ehr-by-black-book-2026-for-emergency-nuemzn5z7751.html" target="_blank">CareCloud / Black Book</a></li>
+    </ul></div>
+    <div class="card"><div class="card-title"><span class="dot" style="--dot-color:var(--rose)"></span>Risks to Monitor</div><ul>
+      <li>athenaAmbient (free, bundled) commoditizes basic scribing for athena users <a class="src" href="https://www.ehrsource.com/articles/ambient-ai-scribes-comparison/" target="_blank">EHR Source 2026</a></li>
+      <li>~7% hallucination rate industry-wide — one bad note can lose a provider permanently <a class="src" href="https://www.ehrsource.com/articles/ambient-ai-scribes-comparison/" target="_blank">EHR Source</a></li>
+      <li>Patient consent workflows vary by state — built-in consent flow required</li>
+      <li>Epic expanding native AI charting — may erode third-party ambient tool demand over time</li>
+    </ul></div>
+    <div class="card"><div class="card-title"><span class="dot" style="--dot-color:var(--green)"></span>Product Health KPIs</div><ul>
+      <li>Edit rate per note (target: below 15%; lower = higher AI quality)</li>
+      <li>Same-day chart closure rate (most cited ROI proof point by health systems)</li>
+      <li>After-hours documentation reduction (pajama time — AMA priority) <a class="src" href="https://www.ama-assn.org/practice-management/digital-health/ai-scribes-save-15000-hours-and-restore-human-side-medicine" target="_blank">AMA 2025</a></li>
+      <li>Encounter-to-note latency (target: under 45 seconds)</li>
+      <li>Monthly active notes per provider (engagement / stickiness)</li>
+      <li>Freemium → PRO conversion rate (target: 15%+)</li>
+    </ul></div>
+  </div>
+  <div class="callout green" style="margin-top:8px;"><strong>The 3-year vision:</strong> Phase 1 — ambient scribe embedded in talkEHR, best-in-class for independent practices on CareCloud's stack. Phase 2 — Wellsoft ED + multilingual encounters, the only uncontested ED ambient AI position. Phase 3 — full encounter intelligence platform: note, code, appeal, translate, handoff, and decision support flowing through cirrusAI across talkEHR, CCH, and Wellsoft. <strong>The note is the entry point. The workflow integration and specialty data flywheel are the moat.</strong></div>
+</div>
+
+</div>
+
+
+<!-- SECTION 10: VOICE AGENT STRATEGIC VALUE -->
+<div class="section" id="voicevalue">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <h2 class="section-title">Voice Agent — Strategic Value for CareCloud</h2>
+  </div>
+
+  <div class="prose">
+    <p>The Voice Agent will not be used by every doctor in every encounter. That's fine — and expected. <strong>Its value to CareCloud as a company is not measured purely by daily active use. It's measured by what it signals, what it enables, and what it protects.</strong> Here is the full value case.</p>
+  </div>
+
+  <div class="callout amber">
+    <strong>The core insight:</strong> A doctor who uses the Voice Agent 3 times a week still experiences cirrusAI as "the AI that knows my patients." That perception — not the click count — is what drives retention, upgrades, and word-of-mouth. This is how Siri, Alexa, and Google Assistant built loyalty: occasional use, high perceived intelligence.
+  </div>
+
+  <!-- VALUE LAYER 1 -->
+  <div style="margin-bottom:32px;">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--sky);margin-bottom:16px;">Layer 1 — Clinical Efficiency: The Moments That Matter Most</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title"><span class="dot" style="--dot-color:var(--sky)"></span>When Doctors Actually Use It</div>
+        <ul>
+          <li><strong>Complex patients</strong> — "What's the creatinine trend over the last 6 months?" Saves opening labs tab mid-conversation with patient</li>
+          <li><strong>Medication uncertainty</strong> — "Is she on any anticoagulants?" Instant answer without leaving the room mentally</li>
+          <li><strong>Mid-encounter gaps</strong> — "When was his last A1C?" Keeps provider present with patient instead of clicking through charts</li>
+          <li><strong>ED walk-ins</strong> — Provider knows nothing about patient; voice agent gives 30-second history brief hands-free</li>
+          <li><strong>Handoff moments</strong> — "Summarize the last 3 encounters for this patient" — shift handoff in seconds</li>
+          <li><strong>Before signing a note</strong> — "Any drug interactions with the new Rx I added?" Final safety check</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot" style="--dot-color:var(--green)"></span>Why Low Frequency ≠ Low Value</div>
+        <ul>
+          <li>Each voice query replaces 45–90 seconds of tab-switching, clicking, and scrolling in the EHR</li>
+          <li>3 queries per day × 20 working days = <strong>60 moments/month where the AI saved them from breaking patient engagement</strong></li>
+          <li>Providers remember the time the AI caught a drug interaction or quickly surfaced the right lab — not how many times they used it</li>
+          <li>High-value occasional use (catching a drug interaction, surfacing a missed diagnosis context) has asymmetric clinical and emotional impact</li>
+          <li>Nurses and PAs will use it more frequently than MDs — expands the active user base beyond just the attending physician</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUE LAYER 2 -->
+  <div style="margin-bottom:32px;">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:16px;">Layer 2 — Product Perception: "CareCloud Has AI That Understands My Patients"</p>
+    <div class="callout green">
+      <strong>The perception effect:</strong> When a doctor demos cirrusAI to a colleague and says "Watch this — I just ask it the patient's BP history and it tells me," that's worth more than any marketing campaign. It positions CareCloud not as an EHR with an AI scribe bolted on, but as an <strong>AI-first clinical platform</strong>. This perception difference directly impacts renewals, referrals, and enterprise sales cycles.
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title"><span class="dot" style="--dot-color:var(--green)"></span>What It Signals to Providers</div>
+        <ul>
+          <li>"This EHR understands me" — the AI knows the patient context without being told</li>
+          <li>"This is future-proof" — practices choosing an EHR today are betting on 5+ years of use; AI depth signals longevity</li>
+          <li>"My team can use this too" — nurses and MAs asking patient questions via voice elevates the entire practice's workflow</li>
+          <li>Reduces the "I need to upgrade to Epic someday" sentiment among talkEHR practices</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot" style="--dot-color:var(--teal)"></span>What It Signals to CareCloud's Market</div>
+        <ul>
+          <li>Positions CareCloud alongside Suki (voice commands) and Abridge (contextual AI) — tools available only to large health systems until now</li>
+          <li>Differentiates from Freed AI ($99/mo, no chart context, copy-paste only) — entirely different product tier</li>
+          <li>Enterprise sales talking point: "Our AI doesn't just transcribe — it knows the patient's history"</li>
+          <li>Investor and press narrative: "AI-native EHR for independent practices" vs "legacy EHR with AI plugin"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUE LAYER 3 -->
+  <div style="margin-bottom:32px;">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:16px;">Layer 3 — Sales &amp; Demo Power: The Feature That Closes Deals</p>
+    <div class="prose">
+      <p>In sales demos and conference presentations, the Voice Agent is the single most visually compelling feature in the product. A live demo of a doctor asking <em>"What's the patient's last creatinine?"</em> and getting a spoken answer in 2 seconds — while an encounter is actively recording — wins rooms in ways that showing a generated SOAP note does not.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title"><span class="dot" style="--dot-color:var(--amber)"></span>Demo Sequence That Wins Rooms</div>
+        <ul>
+          <li>Start ambient recording with a simulated patient encounter</li>
+          <li>Mid-conversation: "Hey Cirrus, what's this patient's A1C history?"</li>
+          <li>Agent responds verbally with trend data — recording keeps going without pause</li>
+          <li>End encounter — generate note from the full bilingual conversation</li>
+          <li>Show note + patient summary in patient's language generated simultaneously</li>
+          <li>Ask agent: "Any drug interactions with the new Rx in the plan?" — agent flags it</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot" style="--dot-color:var(--amber)"></span>What This Demo Communicates</div>
+        <ul>
+          <li>Not a transcription tool — an AI that is actively present and intelligent during the encounter</li>
+          <li>Works for the whole practice — not just the attending; nurses and PAs gain capability too</li>
+          <li>Safety-conscious — catches interactions and flags issues, not just scribes passively</li>
+          <li>Genuinely novel — DAX requires hardware mic, Suki requires tap, nobody has ambient + voice agent simultaneously</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUE LAYER 4 -->
+  <div style="margin-bottom:32px;">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--purple);margin-bottom:16px;">Layer 4 — Platform Stickiness &amp; Switching Cost</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title"><span class="dot" style="--dot-color:var(--purple)"></span>How It Locks Providers Into CareCloud</div>
+        <ul>
+          <li>Voice agent queries train a model on <em>that provider's</em> preferences — which patients they ask about, what they prioritize, how they work. This model is embedded in CareCloud, not portable</li>
+          <li>Every time a doctor relies on the voice agent instead of a tab click, they are building a habit loop inside the CareCloud app</li>
+          <li>Switching EHR means losing the personalized AI layer — switching cost increases with every month of use</li>
+          <li>"Our AI knows Dr. Kim's patients" is not replaceable by a new EHR on day one</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot" style="--dot-color:var(--purple)"></span>Gateway to Higher-Tier Features &amp; Revenue</div>
+        <ul>
+          <li>Voice query for lab result → naturally leads to "add that to the note" → expands from lookup to action</li>
+          <li>Voice order staging (Suki's $399/mo differentiator) is the natural upgrade path once voice query is habitual</li>
+          <li>Practice admins who see voice agent in reports ("providers saved 45 min/week on chart lookups") upgrade to PRO tier to get expanded queries and history depth</li>
+          <li>Multi-seat enterprise contracts justified by: ambient scribe + voice agent + analytics = full AI platform vs. just a scribe</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUE LAYER 5 -->
+  <div style="margin-bottom:32px;">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:16px;">Layer 5 — Data Flywheel: Every Query Makes the Platform Smarter</p>
+    <div class="callout" style="border-left-color:var(--teal);background:rgba(13,148,136,0.07);border-color:rgba(13,148,136,0.2);">
+      <strong>The compounding asset:</strong> Every voice query is a signal. "What's the creatinine trend?" tells the AI that this provider, in this specialty, cares about renal function when prescribing. Over thousands of queries across hundreds of providers, cirrusAI builds a clinical intelligence layer that becomes proprietary to CareCloud. This is not replicable by a startup with no EHR data — it's the moat that gets wider every month.
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title"><span class="dot" style="--dot-color:var(--teal)"></span>What the Query Data Tells Us</div>
+        <ul>
+          <li>Which data points providers check most before prescribing → informs CDI nudge prioritization</li>
+          <li>Which specialties use voice agent most → where to invest in specialty-specific AI depth</li>
+          <li>What providers ask mid-encounter vs. pre-visit → shapes pre-visit chart brief content</li>
+          <li>Common drug interaction queries → informs which interaction flags to surface automatically in notes</li>
+          <li>Query patterns that precede ED visits → potentially predictive clinical intelligence long-term</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot" style="--dot-color:var(--teal)"></span>The 3-Year Platform Vision</div>
+        <ul>
+          <li>Year 1: Voice agent answers chart questions (lookup tool)</li>
+          <li>Year 2: Voice agent proactively surfaces relevant data without being asked ("Patient's A1C is up from last visit — worth noting")</li>
+          <li>Year 3: Voice agent anticipates clinical needs based on specialty + patient profile ("This patient typically gets a renal panel before starting this medication")</li>
+          <li>This progression — from reactive to proactive to predictive — is only possible with the data flywheel the voice agent creates from day one</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPECIALTY MATRIX -->
+  <div style="margin-bottom:28px;">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--white);margin-bottom:16px;">Voice Agent Usage — By Specialty &amp; Scenario</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Specialty</th><th>Most Common Voice Queries</th><th>Frequency Expectation</th><th>Key Value Delivered</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Internal Medicine</strong> (22 users)</td><td>Lab trends (A1C, creatinine, lipids), current medications, last hospitalization, chronic condition timeline</td><td>High — complex multi-morbidity patients generate many queries per encounter</td><td>Reduces chart navigation from 8–10 clicks to 1 spoken question. Keeps provider present with patient.</td></tr>
+          <tr><td><strong>Emergency Medicine / Urgent Care</strong> (8 users)</td><td>Medication lists, allergy verification, last ED visit, prior imaging results, brief patient history</td><td>Very High — ED providers know nothing about walk-in patients; voice agent provides instant history</td><td>Most impactful use case. Provider can gather 3 months of patient history in 30 seconds mid-triage.</td></tr>
+          <tr><td><strong>Psychology / Behavioral Health</strong> (6 users)</td><td>Medication history, last GAD-7/PHQ-9 scores, prior crisis notes, current active diagnoses</td><td>Medium — longitudinal mental health care requires frequent cross-session context</td><td>Preserves therapeutic alliance — provider doesn't break eye contact to look up prior session notes.</td></tr>
+          <tr><td><strong>Family Practice / Primary Care</strong> (10 users)</td><td>Preventive care gaps, vaccine history, last screening dates, chronic med adherence flags</td><td>Medium — preventive care queries before annual wellness visits</td><td>Never miss a care gap. Voice agent reminds provider of overdue items during the encounter.</td></tr>
+          <tr><td><strong>Podiatry</strong> (10 users)</td><td>Diabetes status, peripheral vascular history, wound healing progress, prior surgical notes</td><td>Low-Medium — procedural but comorbidity-aware queries</td><td>Quick comorbidity context before procedures. Especially valuable for diabetic foot patients.</td></tr>
+          <tr><td><strong>OBGYN / Gynecology</strong> (8 users)</td><td>Obstetric history, prior pregnancy complications, current medications, allergy status</td><td>Medium — prenatal visits benefit from quick prior pregnancy data retrieval</td><td>Instant obstetric history in busy prenatal schedules. Reduces risk of missed prior complications.</td></tr>
+          <tr><td><strong>Pain Management</strong> (3 users)</td><td>Current opioid Rx, prescription monitoring program status, prior imaging, functional status history</td><td>High — complex medication management requires frequent verification queries</td><td>PMP verification by voice before prescribing. Reduces manual state database lookups.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="callout green">
+    <strong>Bottom line for the CEO:</strong> The Voice Agent is not a productivity tool that competes with other productivity tools. It is <strong>the feature that makes CareCloud feel like an AI company, not an EHR company.</strong> Its value is partly in the 45 seconds it saves per encounter, and partly in the way it makes every provider who sees it — in a demo, a referral, or a conference — say "I didn't know an EHR could do that." That perception is worth more than any individual feature metric.
+  </div>
+
+</div>
+
+<!-- SECTION 11: FEATURE ROADMAP WITH COMPETITOR BENCHMARKS -->
+<div class="section" id="featurebench">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <h2 class="section-title">Feature Roadmap — With Competitor Benchmarks</h2>
+  </div>
+
+  <div class="prose">
+    <p>Every feature below is mapped to what the market's best tools are already doing — so the team knows exactly what to match, what to beat, and where <strong>cirrusAI has a genuine first-mover lane with no competition.</strong></p>
+  </div>
+
+  <!-- IN PROGRESS -->
+  <div style="margin-bottom:36px;">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:16px;display:flex;align-items:center;gap:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--amber);animation:none"></span>Currently In Development</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>What We're Building</th><th>Who Does It &amp; How</th><th>Our Edge</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Quick-Start Encounter (No Patient Required)</strong></td>
+            <td>Record immediately, assign to patient chart retroactively</td>
+            <td>Freed AI calls this "Quick Note" — record first, attach patient later. <strong>DAX Copilot does NOT support this</strong> — one of the top ED physician complaints. <a class="src" href="https://www.getfreed.ai/resources/best-ai-scribes" target="_blank">Freed 2026</a></td>
+            <td>Add: triage # as anchor (ED); auto-suggest patient match from name/MRN mentioned in audio; 24hr auto-expire with alert</td>
+          </tr>
+          
+          <tr>
+            <td><strong>Voice Agent — Chart-Aware Queries</strong></td>
+            <td>"What's the patient's BP?" — agent reads chart, answers verbally</td>
+            <td>Suki Chart Q&A: "When was the last colonoscopy?", "What meds is this patient on?" — retrieves from EHR without tab navigation. Google Cloud Vertex AI powers FHIR search. Dragon Copilot for Nurses (late 2025): nurses query fluid intake, clinical data mid-encounter. <a class="src" href="https://www.suki.ai/press-releases/suki-unveils-industry-first-ambient-orders-staging-for-its-ai-assistant/" target="_blank">Suki 2025</a></td>
+            <td>Add parallel mode (query without stopping recording); wake word activation; earpiece whisper output — none of which Suki ships</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- WELLSOFT / ED -->
+  <div style="margin-bottom:36px;">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);margin-bottom:16px;display:flex;align-items:center;gap:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--teal)"></span>Wellsoft / Emergency Department Features</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Description</th><th>What Competitors Do</th><th>cirrusAI Opportunity</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Triage Number as Session Anchor</strong></td>
+            <td>Start session linked to triage # before chart is opened; auto-merge when Wellsoft chart opens</td>
+            <td><strong>No ambient AI does this.</strong> All — DAX, Abridge, Suki — require an open patient chart to start a session. Freed's Quick Note is the closest but doesn't link to a triage workflow. This is a genuine gap.</td>
+            <td class="badge you">First Mover</td>
+          </tr>
+          <tr>
+            <td><strong>Smart Pause / Resume for Interrupted Encounters</strong></td>
+            <td>Audio segments stitched with time labels; note understands multi-chapter encounter structure</td>
+            <td>DAX Copilot FAQ explicitly states: once you start editing a note, further ambient recording is disabled — hard blocker for ED. Abridge handles pause/resume in Epic Haiku but not multi-chapter. <strong>Nobody has solved this for ED.</strong> <a class="src" href="https://csocontent.nuance.com/Hub/DAX%20Copilot/Misc%20Resources/DAX-Copilot-FAQs.pdf" target="_blank">DAX Copilot FAQ</a></td>
+            <td class="badge you">First Mover</td>
+          </tr>
+          <tr>
+            <td><strong>Multi-Provider Session Contributions</strong></td>
+            <td>RN captures triage, MD captures exam, NP captures discharge — synthesized into one note with role tags</td>
+            <td>Dragon Copilot for Nurses (late 2025) creates separate ambient sessions for nurses vs physicians on same patient — but notes remain separate, not synthesized. <strong>No ambient AI merges multi-provider audio into one encounter note.</strong> <a class="src" href="https://techcommunity.microsoft.com/blog/healthcareandlifesciencesblog/highlights-from-ignite-2025-how-agentic-ai-and-microsoft-copilot-are-empowering-/4474658" target="_blank">Microsoft Ignite 2025</a></td>
+            <td class="badge you">First Mover</td>
+          </tr>
+          <tr>
+            <td><strong>6 ED-Specific Note Types</strong></td>
+            <td>Triage, Physician, Nursing, Re-evaluation, Disposition, Shift Handoff — each with required fields</td>
+            <td>Ambience Healthcare has 85 specialty templates but built for Epic's ED module, not a standalone EDIS like Wellsoft. DeepScribe has strong template depth. Neither is purpose-built for the full triage → handoff workflow chain. <a class="src" href="https://evolvancemarketresearch.com/reports/us-ambient-clinical-intelligence-solutions-market/" target="_blank">Evolvance 2026</a></td>
+            <td>Own this lane via Wellsoft embed</td>
+          </tr>
+          <tr>
+            <td><strong>ED Background Noise Suppression</strong></td>
+            <td>Model tuned for ED acoustic environment — alarms, overlapping voices, PA system</td>
+            <td>DAX Copilot FAQ tells users to disconnect Bluetooth and AirPods because external audio sources interfere with their model. <strong>No vendor publishes ED-specific noise suppression capabilities.</strong> This is an engineering gap industry-wide. <a class="src" href="https://csocontent.nuance.com/Hub/DAX%20Copilot/Misc%20Resources/DAX-Copilot-FAQs.pdf" target="_blank">DAX Copilot FAQ</a></td>
+            <td class="badge you">First Mover</td>
+          </tr>
+          <tr>
+            <td><strong>ED CPT Auto-Coding (99281–99285)</strong></td>
+            <td>Suggest ED E/M code based on MDM complexity in note; show reasoning</td>
+            <td>DeepScribe leads on E/M coding generally (98.8 KLAS score). Ambience markets "coding-aware" AI. Abridge launched prior auth + smart problem grouping for billing. <strong>None specifically call out ED 99281–99285 coding.</strong> <a class="src" href="https://www.ehrsource.com/articles/ambient-ai-scribes-comparison/" target="_blank">EHR Source 2026</a></td>
+            <td>Gap in ED billing — major revenue opportunity</td>
+          </tr>
+          <tr>
+            <td><strong>AI Shift Handoff Document</strong></td>
+            <td>End of shift: all patients summarized — pending labs, critical findings, outstanding orders, disposition status</td>
+            <td>JAMA Network Open (2024) published strong results on AI-generated ED handoff summaries. <strong>No ambient AI app has shipped this as a product feature.</strong> Completely open ground. <a class="src" href="https://formative.jmir.org/2026/1/e80401" target="_blank">JMIR Formative 2026</a></td>
+            <td class="badge you">First Mover</td>
+          </tr>
+          <tr>
+            <td><strong>Critical Keyword Flagging (Sepsis, STEMI, Stroke)</strong></td>
+            <td>Soft alert during recording if time-sensitive condition keywords detected</td>
+            <td>Dragon Copilot and Abridge do "smart problem grouping" for documented diagnoses — but only after the note. Nabla's Proactive Coding Agent gives CDI nudges post-note. <strong>No one flags in real-time mid-conversation.</strong></td>
+            <td class="badge you">First Mover</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- VOICE AGENT EXPANDED -->
+  <div style="margin-bottom:36px;">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--rose);margin-bottom:16px;display:flex;align-items:center;gap:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--rose)"></span>Voice Agent — Expanded Capabilities</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Description</th><th>What Competitors Do</th><th>Gap / Opportunity</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Vital Sign Trend Queries</strong></td>
+            <td>"What's the BP trend over the last 3 visits?" — spoken summary + mini chart on screen</td>
+            <td>Suki retrieves individual latest data points. Abridge's new contextual reasoning engine (2025, $550M raise) moves toward multi-visit context. <strong>Trend query via voice is not shipped by anyone.</strong> <a class="src" href="https://www.fastcompany.com/91502005/abridge-most-innovative-companies-2026" target="_blank">Fast Company / Abridge 2026</a></td>
+            <td>Build: spoken trend summary + sparkline on screen</td>
+          </tr>
+          <tr>
+            <td><strong>Clinical Calculations by Voice</strong></td>
+            <td>BMI, eGFR, CHA₂DS₂-VASc, weight-based dosing — calculated from chart data verbally mid-encounter</td>
+            <td>Glass Health includes automated calculations in their DDx generation. Suki can answer dosing questions. <strong>No one does weight/lab-based calculations hands-free mid-encounter from chart-pulled data.</strong> <a class="src" href="https://glass.health/resources/best-ai-medical-scribe" target="_blank">Glass Health 2026</a></td>
+            <td>High value for Internal Medicine and cardiology</td>
+          </tr>
+          <tr>
+            <td><strong>Voice-Triggered Note Edits</strong></td>
+            <td>"Add penicillin allergy", "Remove last sentence", "Change diagnosis to Type 2 Diabetes"</td>
+            <td>Suki supports voice commands for note editing — one of their core differentiators. DAX Copilot supports dictation-mode editing post-generation. <strong>cirrusAI needs this to match Suki.</strong> <a class="src" href="https://www.suki.ai/" target="_blank">Suki.ai</a></td>
+            <td>Parity with Suki; then add section-level regeneration by voice</td>
+          </tr>
+          <tr>
+            <td><strong>Ambient Order Staging by Voice</strong></td>
+            <td>Speak prescription/lab orders during encounter; agent structures, codes, and stages for one-tap sign</td>
+            <td>Suki launched industry-first ambient order staging in April 2025 — clinicians speak orders, Suki structures and stages them. Saves up to 1.4 hours per 8-hour shift on order entry. Initial rollout via athenahealth Marketplace. <a class="src" href="https://www.businesswire.com/news/home/20250403618881/en/Suki-Unveils-Industry-First-Ambient-Orders-Staging-for-its-AI-Assistant" target="_blank">BusinessWire / Suki Apr 2025</a></td>
+            <td>Build for talkEHR + Wellsoft; major time-saver in ED and urgent care</td>
+          </tr>
+          <tr>
+            <td><strong>Parallel Mode (Query While Recording)</strong></td>
+            <td>Voice agent answers chart queries without interrupting ambient recording — dual audio stream</td>
+            <td><strong>No competitor does this.</strong> DAX Copilot recording is interrupted when you interact with the app. This is a fundamental UX gap in the entire category.</td>
+            <td class="badge you">First Mover</td>
+          </tr>
+          <tr>
+            <td><strong>Wake Word Hands-Free Activation</strong></td>
+            <td>"Hey Cirrus" activates agent — no screen tap required</td>
+            <td>Suki requires a tap to activate. DAX Copilot uses PowerMic Mobile hardware button. <strong>No ambient AI scribe ships a software wake word.</strong> All require a physical tap. <a class="src" href="https://www.trytwofold.com/compare/suki-ai-review" target="_blank">Twofold / Suki Review</a></td>
+            <td class="badge you">First Mover</td>
+          </tr>
+          <tr>
+            <td><strong>Earpiece Whisper Output</strong></td>
+            <td>Agent whispers chart answer through connected earbuds; patient doesn't hear</td>
+            <td><strong>Nobody ships this in healthcare.</strong> Consumer analog: Siri / Google Assistant earpiece mode. In clinical context this is completely novel — provider gets data without breaking eye contact with patient.</td>
+            <td class="badge you">First Mover</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- UX IMPROVEMENTS -->
+  <div style="margin-bottom:36px;">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--sky);margin-bottom:16px;display:flex;align-items:center;gap:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--sky)"></span>App UX Improvements</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Description</th><th>What Competitors Do</th><th>Gap / Opportunity</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Section-Level Tap-to-Edit</strong></td>
+            <td>Tap HPI, ROS, Exam, Assessment, Plan individually — edit one section without touching others</td>
+            <td>Freed AI does this well — labeled sections, tap to edit each. Abridge inside Epic Haiku shows structured sections with section-level editing. DAX Copilot and Nabla present freeform text blocks — no section separation on mobile. <a class="src" href="https://www.getfreed.ai/resources/best-ai-scribes" target="_blank">Freed 2026</a></td>
+            <td>Table stakes for mobile-first providers; must ship</td>
+          </tr>
+          <tr>
+            <td><strong>AI Confidence Score Per Section</strong></td>
+            <td>Green/yellow/red indicator per note section showing AI certainty — directs provider attention</td>
+            <td>OrbDoc links every claim to audio timestamp — functions as traceability but not a confidence score. <strong>No vendor shows a section-level confidence indicator.</strong> This is genuinely novel UI in this space. <a class="src" href="https://orbdoc.com/compare/ai-medical-scribe-comparison-2025/" target="_blank">OrbDoc Compare</a></td>
+            <td class="badge you">First Mover</td>
+          </tr>
+          <tr>
+            <td><strong>Note Regeneration with Prompt</strong></td>
+            <td>"Make this more concise", "Expand the Plan", "Match my saved style" — regenerate without re-recording</td>
+            <td>Freed AI allows style-based regeneration. Heidi Health lets providers customize output style per session. Glass Health allows regenerating specific sections (DDx, A&P) independently. <strong>DAX Copilot has no regeneration</strong> — manual editing only post-generation. <a class="src" href="https://glass.health/resources/best-ai-medical-scribe" target="_blank">Glass Health 2026</a></td>
+            <td>Highly valued by providers with strong style preferences</td>
+          </tr>
+          <tr>
+            <td><strong>Lock Screen Recording Controls</strong></td>
+            <td>Start/stop without unlocking phone; lock screen widget</td>
+            <td><strong>No ambient AI app ships lock screen controls.</strong> DAX Copilot requires PowerMic Mobile app to be open on screen. This is a hardware UX gap no one has addressed. <a class="src" href="https://csocontent.nuance.com/Hub/DAX%20Copilot/Misc%20Resources/DAX-Copilot-FAQs.pdf" target="_blank">DAX Copilot FAQ</a></td>
+            <td class="badge you">First Mover</td>
+          </tr>
+          <tr>
+            <td><strong>Apple Watch / Wearable Companion</strong></td>
+            <td>Tap to start, stop, review note from Apple Watch</td>
+            <td><strong>No ambient AI ships an Apple Watch app.</strong> Augmedix uses wearable hardware (smart badge) but that's a separate enterprise device — not a Watch integration. <a class="src" href="https://www.sully.ai/blog/best-10-ai-medical-scribes-in-2025" target="_blank">Sully / Augmedix</a></td>
+            <td class="badge you">First Mover</td>
+          </tr>
+          <tr>
+            <td><strong>Bluetooth Microphone Support</strong></td>
+            <td>Lapel clip, collar mic, or BT device as primary audio input for better capture quality</td>
+            <td>DAX Copilot explicitly tells users to disconnect Bluetooth devices before recording — their model can't handle external BT mics. Abridge, Suki, Freed all phone-mic only. <strong>Zero ambient AI scribes support external BT microphone input.</strong> <a class="src" href="https://csocontent.nuance.com/Hub/DAX%20Copilot/Misc%20Resources/DAX-Copilot-FAQs.pdf" target="_blank">DAX Copilot FAQ</a></td>
+            <td class="badge you">First Mover — especially valuable in ED</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CLINICAL INTELLIGENCE -->
+  <div style="margin-bottom:36px;">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-bottom:16px;display:flex;align-items:center;gap:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green)"></span>Clinical Intelligence Features</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Description</th><th>What Competitors Do</th><th>Gap / Opportunity</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Pre-Visit Chart Brief</strong></td>
+            <td>AI-generated 5-bullet briefing before encounter: last visit, active problems, meds, pending labs, recent hospital</td>
+            <td>Ambience Healthcare launched "Patient Recap" at St. Luke's Health System in June 2025 — the first ambient AI to ship pre-visit chart summaries. They call it "the first ambient AI supporting the entire patient encounter lifecycle." Doctors spend ~5 min/patient on chart review. Suki also added pre-visit patient summaries. Freed added past visit summaries and chat to dig into history. <strong>This is becoming table stakes.</strong> <a class="src" href="https://markets.financialcontent.com/advisoranalyst/article/accwirecq-2025-6-24-ambience-healthcares-patient-recap-offers-clinicians-the-first-chart-summarization-technology-from-an-ambient-ai-platform" target="_blank">AccessNewswire / Ambience Jun 2025</a></td>
+            <td>Must ship — already at parity stage, not innovation</td>
+          </tr>
+          <tr>
+            <td><strong>DDx + Assessment &amp; Plan Suggestions</strong></td>
+            <td>Ambient note plus inline differential diagnosis and A&P suggestions from patient conversation</td>
+            <td>Glass Health is the clear leader — combines ambient scribing with DDx and A&P generation per problem. Abridge launched UpToDate integration in 2025 for treatment recommendations within the note. Abridge positions itself as moving "from passive tool to active assistant." <a class="src" href="https://www.fastcompany.com/91502005/abridge-most-innovative-companies-2026" target="_blank">Fast Company / Abridge 2026</a></td>
+            <td>High value for Internal Medicine, Psychiatry, complex cognitive specialties</td>
+          </tr>
+          <tr>
+            <td><strong>Drug Interaction Detection in Note</strong></td>
+            <td>When new med appears in Plan, auto-flag against current med list from EHR before provider signs</td>
+            <td>Suki can answer drug questions via Chart Q&A. Tali AI bundles evidence-based search with the scribe. <strong>No ambient AI auto-flags interactions when a new medication appears in the generated plan.</strong> This is a safety and liability gap. <a class="src" href="https://www.trytwofold.com/compare/suki-ai-review" target="_blank">Twofold / Suki Review</a></td>
+            <td class="badge you">First Mover — safety differentiator</td>
+          </tr>
+          <tr>
+            <td><strong>ICD-10 Specificity Nudges</strong></td>
+            <td>Vague diagnosis in note → nudge toward specific code (e.g. "DM" → "Type 2 DM with CKD stage 3")</td>
+            <td>Ambience Healthcare specifically markets "coding-aware" AI with CDI nudges. Nabla's "Proactive Coding Agent" flags vague codes and suggests specific ones. DeepScribe's core value prop is coding accuracy — 98.8 KLAS score. <strong>cirrusAI needs parity here.</strong> <a class="src" href="https://glass.health/compare/nabla" target="_blank">Glass / Nabla 2026</a></td>
+            <td>Parity with Nabla and Ambience; directly improves reimbursement</td>
+          </tr>
+          <tr>
+            <td><strong>Patient-Friendly Visit Summary</strong></td>
+            <td>Plain-language version of note auto-generated for patient portal or printout</td>
+            <td>Abridge is most known for this — patient summaries are one of their standout features, highlighted by Kaiser Permanente. DAX Copilot generates after-visit summaries. Suki generates patient instructions. <strong>This is expected by 2026 — needs to ship.</strong> <a class="src" href="https://www.deepcura.com/resources/abridge-ai-review" target="_blank">DeepCura / Abridge Review</a></td>
+            <td>Table stakes — ship alongside clinical note</td>
+          </tr>
+          <tr>
+            <td><strong>Post-Visit Provider Action Checklist</strong></td>
+            <td>Labs ordered, referrals needed, patient instructions, return precautions — pulled from Plan as a checklist</td>
+            <td>Abridge and DAX generate after-visit summaries for the patient. Suki generates patient instructions. <strong>Nobody generates a provider-facing action checklist separately from the patient summary.</strong> That's a distinct and highly useful workflow artifact. <a class="src" href="https://www.trytwofold.com/compare/dax-copilot-review" target="_blank">Twofold / DAX Review</a></td>
+            <td class="badge you">First Mover</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANSLATION -->
+  <div style="margin-bottom:36px;">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--purple);margin-bottom:16px;display:flex;align-items:center;gap:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--purple)"></span>Language &amp; Translation Features</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Description</th><th>What Competitors Do</th><th>Gap / Opportunity</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Real-Time Bidirectional Voice Translation</strong></td>
+            <td>Provider speaks English → patient hears native language; patient speaks → provider reads English; same session feeds ambient note</td>
+            <td>Microsoft Dragon Copilot launched English ↔ Spanish encounter support May 2025 — "conduct encounters in Spanish without a translator." Abridge: 28+ languages in note generation. Nabla: 35+ languages including Arabic, Mandarin, Vietnamese, Hindi. <strong>The gap: nobody combines translation + ambient note generation in one uninterrupted session.</strong> They all do one or the other. <a class="src" href="https://slator.com/microsoft-new-healthcare-voice-ai-enables-encounters-spanish-without-translator/" target="_blank">Slator / Microsoft Mar 2025</a></td>
+            <td class="badge you">First Mover — one session, one note, two languages</td>
+          </tr>
+          <tr>
+            <td><strong>Language Auto-Detection</strong></td>
+            <td>Agent detects patient's language automatically — no manual selection required</td>
+            <td>Freed AI auto-detects 90+ languages — one of their standout features. Nabla also auto-detects. <strong>DAX Copilot requires manual language selection.</strong> Auto-detect is the correct UX. <a class="src" href="https://www.commure.com/blog-scribe/ai-medical-scribe-alternatives" target="_blank">Commure / Freed</a></td>
+            <td>Match Freed; manual selection is friction that shouldn't exist</td>
+          </tr>
+          <tr>
+            <td><strong>Discharge Instructions in Patient's Language</strong></td>
+            <td>Auto-generated from the note in patient's language — not a separate translation step</td>
+            <td>DAX Copilot generates after-visit summaries but in English only. No ambient AI generates discharge instructions in the patient's spoken language from the same encounter session. <a class="src" href="https://www.healos.ai/ai-scribe/medical-translation" target="_blank">HealOS Medical Translation</a></td>
+            <td>High value in OBGYN, Urgent Care, ED — all with high LEP patient populations</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- COMPLIANCE -->
+  <div style="margin-bottom:36px;">
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);margin-bottom:16px;display:flex;align-items:center;gap:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--amber)"></span>Compliance &amp; Trust Features</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature</th><th>Description</th><th>What Competitors Do</th><th>Gap / Opportunity</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Conversation Timestamp Links / Audit Trail</strong></td>
+            <td>Every note claim linked to exact audio timestamp — payer audit defense</td>
+            <td>OrbDoc is the only vendor that ships this — "the only evidence-linked solution." Abridge stores audio for 90 days but without timestamp linking. Most vendors (Suki, Freed, DAX) don't retain audio at all post-generation. <strong>OrbDoc charges $199/month just for this feature.</strong> <a class="src" href="https://orbdoc.com/compare/ai-medical-scribe-comparison-2025/" target="_blank">OrbDoc Compare</a></td>
+            <td>Differentiate from OrbDoc by bundling this at no additional cost</td>
+          </tr>
+          <tr>
+            <td><strong>In-App Patient Consent Workflow</strong></td>
+            <td>One-tap consent prompt + timestamp log at start of recording; satisfies state recording laws</td>
+            <td>Abridge requires institutional consent and links providers to a "Consent tip sheet" — no in-app flow. DAX Copilot requires institutional consent protocols. <strong>No ambient AI has a built-in consent tap + log that satisfies state laws in one step</strong> — most leave it to the institution. <a class="src" href="https://it.johnshopkins.edu/ai/abridge-ai-scribe/" target="_blank">Johns Hopkins IT / Abridge</a></td>
+            <td>Compliance differentiator for independent practices without legal teams</td>
+          </tr>
+          <tr>
+            <td><strong>Configurable Audio Retention Policy</strong></td>
+            <td>Admin sets how long audio is stored: 7 / 30 / 90 days / never retained — configurable per practice</td>
+            <td>OrbDoc: configurable long-term retention as a paid premium feature. Nabla: never stores patient data on servers — audio exists only in the clinician's browser. Freed, Suki, DAX: no audio retention post-note. <strong>Different practices need different policies.</strong> <a class="src" href="https://orbdoc.com/compare/ai-medical-scribe-comparison-2025/" target="_blank">OrbDoc Compare</a></td>
+            <td>Give admins the choice — one policy doesn't fit all</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SUMMARY TABLE -->
+  <div>
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--white);margin-bottom:16px;">Who Leads What — &amp; Where cirrusAI Has First-Mover Space</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Feature Area</th><th>Market Leader</th><th>cirrusAI Status</th><th>Priority</th></tr></thead>
+        <tbody>
+          <tr><td>Pre-visit chart brief</td><td>Ambience (Patient Recap, Jun 2025) <a class="src" href="https://markets.financialcontent.com/advisoranalyst/article/accwirecq-2025-6-24-ambience-healthcares-patient-recap-offers-clinicians-the-first-chart-summarization-technology-from-an-ambient-ai-platform" target="_blank">Source</a></td><td>Build — becoming table stakes</td><td style="color:var(--rose);font-weight:600">Must Have</td></tr>
+          <tr><td>Voice commands + ambient order staging</td><td>Suki (Apr 2025) <a class="src" href="https://www.businesswire.com/news/home/20250403618881/en/Suki-Unveils-Industry-First-Ambient-Orders-Staging-for-its-AI-Assistant" target="_blank">Source</a></td><td>Build — major time savings in ED</td><td style="color:var(--rose);font-weight:600">Must Have</td></tr>
+          <tr><td>Section-level note editing</td><td>Freed AI, Abridge <a class="src" href="https://www.getfreed.ai/resources/best-ai-scribes" target="_blank">Source</a></td><td>Build — mobile UX standard</td><td style="color:var(--rose);font-weight:600">Must Have</td></tr>
+          <tr><td>ICD-10 specificity nudges / coding CDI</td><td>Nabla, Ambience, DeepScribe <a class="src" href="https://glass.health/compare/nabla" target="_blank">Source</a></td><td>Build — revenue impact</td><td style="color:var(--rose);font-weight:600">Must Have</td></tr>
+          <tr><td>Patient-friendly visit summary</td><td>Abridge, DAX Copilot <a class="src" href="https://www.deepcura.com/resources/abridge-ai-review" target="_blank">Source</a></td><td>Build — expected feature in 2026</td><td style="color:var(--rose);font-weight:600">Must Have</td></tr>
+          <tr><td>Multi-language note generation (35+ languages)</td><td>Nabla (35+), Freed (90+ auto-detect) <a class="src" href="https://www.commure.com/blog-scribe/ai-medical-scribe-alternatives" target="_blank">Source</a></td><td>Match then exceed with unified translation</td><td style="color:var(--amber);font-weight:600">High</td></tr>
+          <tr><td>Timestamp-linked audit trail</td><td>OrbDoc only <a class="src" href="https://orbdoc.com/compare/ai-medical-scribe-comparison-2025/" target="_blank">Source</a></td><td>Build — bundle free vs OrbDoc's $199/mo add-on</td><td style="color:var(--amber);font-weight:600">High</td></tr>
+          <tr><td>Note regeneration with prompts</td><td>Freed, Glass Health <a class="src" href="https://glass.health/resources/best-ai-medical-scribe" target="_blank">Source</a></td><td>Build</td><td style="color:var(--amber);font-weight:600">High</td></tr>
+          <tr><td>ED ambient documentation (Wellsoft)</td><td><strong>Nobody — genuine gap</strong></td><td><span class="badge you">First Mover</span></td><td style="color:var(--green);font-weight:600">Strategic</td></tr>
+          <tr><td>Pause/resume multi-chapter encounters</td><td><strong>Nobody — DAX explicitly fails here</strong></td><td><span class="badge you">First Mover</span></td><td style="color:var(--green);font-weight:600">Strategic</td></tr>
+          <tr><td>Triage # as session anchor</td><td><strong>Nobody ships this</strong></td><td><span class="badge you">First Mover</span></td><td style="color:var(--green);font-weight:600">Strategic</td></tr>
+          <tr><td>Wake word hands-free activation</td><td><strong>Nobody ships it — all require tap</strong></td><td><span class="badge you">First Mover</span></td><td style="color:var(--green);font-weight:600">Strategic</td></tr>
+          <tr><td>Parallel mode (query while recording)</td><td><strong>Nobody — DAX recording stops on interaction</strong></td><td><span class="badge you">First Mover</span></td><td style="color:var(--green);font-weight:600">Strategic</td></tr>
+          <tr><td>Bluetooth mic support</td><td><strong>Nobody — DAX tells users to disconnect BT</strong></td><td><span class="badge you">First Mover</span></td><td style="color:var(--sky);font-weight:600">Medium</td></tr>
+          <tr><td>Apple Watch companion</td><td><strong>Nobody ships it</strong></td><td><span class="badge you">First Mover</span></td><td style="color:var(--sky);font-weight:600">Medium</td></tr>
+          <tr><td>Confidence score per note section</td><td><strong>Nobody ships UI for this</strong></td><td><span class="badge you">First Mover</span></td><td style="color:var(--sky);font-weight:600">Medium</td></tr>
+          <tr><td>Translation + note in one session</td><td><strong>Nobody — all do one or the other</strong></td><td><span class="badge you">First Mover</span></td><td style="color:var(--green);font-weight:600">Strategic</td></tr>
+          <tr><td>Drug interaction auto-flag in note</td><td><strong>Nobody auto-flags from note → med list</strong></td><td><span class="badge you">First Mover — safety differentiator</span></td><td style="color:var(--amber);font-weight:600">High</td></tr>
+          <tr><td>Provider action checklist post-visit</td><td><strong>Nobody — patient summaries only</strong></td><td><span class="badge you">First Mover</span></td><td style="color:var(--sky);font-weight:600">Medium</td></tr>
+          <tr><td>AI-generated shift handoff (ED)</td><td><strong>Nobody has shipped this as a feature</strong></td><td><span class="badge you">First Mover</span></td><td style="color:var(--green);font-weight:600">Strategic</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout green" style="margin-top:16px;"><strong>Count:</strong> cirrusAI has <strong>12 genuine first-mover opportunities</strong> — features no competitor currently ships — plus 8 areas where parity with market leaders is needed. The first-mover features cluster around ED/Wellsoft integration, voice agent UX, and unified translation+documentation. These are the areas to protect with speed of execution.</div>
+  </div>
+
+</div>
+
+<div class="sources" id="sources">
+  <h2>All Data Sources &amp; References — Click to Verify</h2>
+  <div class="src-grid">
+    <div class="src-item"><span class="src-num">01</span><span class="src-title">Ambient AI Tool Adoption in US Hospitals — AJMC / JAMIA 2025</span><span class="src-pub">J Am Med Inform Assoc. 2025;32(7):1093–1100</span><a class="src-link" href="https://www.ajmc.com/view/ambient-ai-tool-adoption-in-us-hospitals-and-associated-factors" target="_blank">ajmc.com → Ambient AI Tool Adoption in US Hospitals</a></div>
+    <div class="src-item"><span class="src-num">02</span><span class="src-title">2025: The State of AI in Healthcare — Menlo Ventures</span><span class="src-pub">Menlo Ventures, March 2026</span><a class="src-link" href="https://menlovc.com/perspective/2025-the-state-of-ai-in-healthcare/" target="_blank">menlovc.com → 2025 State of AI in Healthcare</a></div>
+    <div class="src-item"><span class="src-num">03</span><span class="src-title">AI Adoption Survey of 43 US Health Systems — PMC / Scottsdale Institute</span><span class="src-pub">PMC12202002 — Fall 2024</span><a class="src-link" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12202002/" target="_blank">pmc.ncbi.nlm.nih.gov/articles/PMC12202002/</a></div>
+    <div class="src-item"><span class="src-num">04</span><span class="src-title">US Ambient Clinical Intelligence Market 2025–2035 — Evolvance</span><span class="src-pub">Evolvance Market Research, 2026</span><a class="src-link" href="https://evolvancemarketresearch.com/reports/us-ambient-clinical-intelligence-solutions-market/" target="_blank">evolvancemarketresearch.com → US ACI Market</a></div>
+    <div class="src-item"><span class="src-num">05</span><span class="src-title">Ambient Clinical Intelligence Market Size 2035 — SNS Insider</span><span class="src-pub">SNS Insider, March 2026</span><a class="src-link" href="https://www.snsinsider.com/reports/ambient-clinical-intelligence-market-9747" target="_blank">snsinsider.com → Ambient Clinical Intelligence Market</a></div>
+    <div class="src-item"><span class="src-num">06</span><span class="src-title">AI in Healthcare 2025 Statistics — VentionTeams</span><span class="src-pub">VentionTeams HealthTech Research, 2025</span><a class="src-link" href="https://ventionteams.com/healthtech/ai/statistics" target="_blank">ventionteams.com → AI in Healthcare Statistics</a></div>
+    <div class="src-item"><span class="src-num">07</span><span class="src-title">25 AI in Medical Documentation Statistics — GetCodesHealth 2026</span><span class="src-pub">GetCodesHealth, compiled 2026</span><a class="src-link" href="https://www.getcodeshealth.com/blogs/ai-medical-documentation-statistics" target="_blank">getcodeshealth.com → AI Medical Documentation Statistics</a></div>
+    <div class="src-item"><span class="src-num">08</span><span class="src-title">AI in Healthcare Statistics (2026) — DemandSage</span><span class="src-pub">DemandSage, December 2025</span><a class="src-link" href="https://www.demandsage.com/ai-in-healthcare-stats/" target="_blank">demandsage.com → AI in Healthcare Stats</a></div>
+    <div class="src-item"><span class="src-num">09</span><span class="src-title">Ambient AI Scribes 2026: Clinical Evidence, ROI, Vendor Comparison — EHR Source</span><span class="src-pub">EHR Source, February 2026</span><a class="src-link" href="https://www.ehrsource.com/articles/ambient-ai-scribes-comparison/" target="_blank">ehrsource.com → Ambient AI Scribes 2026</a></div>
+    <div class="src-item"><span class="src-num">10</span><span class="src-title">AI Medical Scribe Pricing Guide 2025 — OrbDoc</span><span class="src-pub">OrbDoc, December 2025</span><a class="src-link" href="https://orbdoc.com/learn/ai-medical-scribe-pricing-guide/" target="_blank">orbdoc.com → AI Medical Scribe Pricing Guide</a></div>
+    <div class="src-item"><span class="src-num">11</span><span class="src-title">Best AI Medical Scribes Comparison 2025 — OrbDoc</span><span class="src-pub">OrbDoc, November 2025</span><a class="src-link" href="https://orbdoc.com/compare/ai-medical-scribe-comparison-2025/" target="_blank">orbdoc.com → AI Medical Scribe Comparison</a></div>
+    <div class="src-item"><span class="src-num">12</span><span class="src-title">Best AI Scribes for Clinicians 2026 — Freed AI</span><span class="src-pub">Freed AI Resources, 2026</span><a class="src-link" href="https://www.getfreed.ai/resources/best-ai-scribes" target="_blank">getfreed.ai → Best AI Scribes 2026</a></div>
+    <div class="src-item"><span class="src-num">13</span><span class="src-title">Ambient AI Scribe Adoption in the Emergency Department — Annals of Emergency Medicine</span><span class="src-pub">Annals Emerg Med. 2025. DOI: 10.1016/j.annemergmed.2025.12.017</span><a class="src-link" href="https://www.annemergmed.com/article/S0196-0644(25)01458-1/fulltext" target="_blank">annemergmed.com → ED Ambient AI Scribe Adoption Study</a></div>
+    <div class="src-item"><span class="src-num">14</span><span class="src-title">Ambient AI vs Human Scribes in the ED — Annals of Emergency Medicine (Mayo Clinic)</span><span class="src-pub">Annals Emerg Med. 2025. DOI: 10.1016/j.annemergmed.2025.13009</span><a class="src-link" href="https://www.annemergmed.com/article/S0196-0644(25)01300-9/fulltext" target="_blank">annemergmed.com → AI vs Human Scribes in ED (Mayo)</a></div>
+    <div class="src-item"><span class="src-num">15</span><span class="src-title">AI-Powered Ambient Scribe Experiences Among Emergency Physicians — JMIR Formative</span><span class="src-pub">JMIR Formative Res. 2026;10:e80401</span><a class="src-link" href="https://formative.jmir.org/2026/1/e80401" target="_blank">formative.jmir.org → ED Physician Ambient Scribe Pilot</a></div>
+    <div class="src-item"><span class="src-num">16</span><span class="src-title">CareCloud Brings Wellsoft to Urgent Care — Press Release</span><span class="src-pub">CareCloud / GlobeNewswire, January 8, 2026</span><a class="src-link" href="https://finance.yahoo.com/news/carecloud-brings-wellsoft-urgent-care-130000444.html" target="_blank">finance.yahoo.com → CareCloud Wellsoft Urgent Care</a></div>
+    <div class="src-item"><span class="src-num">17</span><span class="src-title">Wellsoft Ranked #1 EHR Emergency Medicine — Black Book 2026</span><span class="src-pub">CareCloud / Black Book Research, January 22, 2026</span><a class="src-link" href="https://www.stocktitan.net/news/CCLDO/care-cloud-s-wellsoft-ranked-1-ehr-by-black-book-2026-for-emergency-nuemzn5z7751.html" target="_blank">stocktitan.net → Wellsoft #1 Black Book ED EHR 2026</a></div>
+    <div class="src-item"><span class="src-num">18</span><span class="src-title">AI Scribes Save 15,000 Hours — American Medical Association</span><span class="src-pub">AMA, June 2025 — The Permanente Medical Group, 2.5M encounters</span><a class="src-link" href="https://www.ama-assn.org/practice-management/digital-health/ai-scribes-save-15000-hours-and-restore-human-side-medicine" target="_blank">ama-assn.org → AI Scribes Save 15,000 Hours</a></div>
+    <div class="src-item"><span class="src-num">19</span><span class="src-title">Microsoft Dragon Copilot Multilingual Healthcare AI — Slator</span><span class="src-pub">Slator, March 2025</span><a class="src-link" href="https://slator.com/microsoft-new-healthcare-voice-ai-enables-encounters-spanish-without-translator/" target="_blank">slator.com → Dragon Copilot Multilingual Encounters</a></div>
+    <div class="src-item"><span class="src-num">20</span><span class="src-title">6 Health Systems Enhancing Care with Ambient AI — AHA Center for Health Innovation</span><span class="src-pub">AHA, April 14, 2026</span><a class="src-link" href="https://www.aha.org/aha-center-health-innovation-market-scan/2026-04-14-6-health-systems-enhancing-care-delivery-ambient-ai-scribes" target="_blank">aha.org → 6 Health Systems Ambient AI Scribes</a></div>
+    <div class="src-item"><span class="src-num">21</span><span class="src-title">Ambient AI Scribes — Modest Time Savings — STAT News / JAMA 2026</span><span class="src-pub">STAT News, April 1, 2026 — 1,800 clinicians, 5 academic centers</span><a class="src-link" href="https://www.statnews.com/2026/04/01/ai-ambient-scribes-modest-time-savings-clinical-documentation/" target="_blank">statnews.com → Ambient AI Scribes JAMA Study</a></div>
+    <div class="src-item"><span class="src-num">22</span><span class="src-title">Clinician Perspectives on Ambient AI Scribes — JAMIA 2025</span><span class="src-pub">J Am Med Inform Assoc. 2025;33(2):255 — 24 clinicians, multi-specialty</span><a class="src-link" href="https://academic.oup.com/jamia/article/33/2/255/8364687" target="_blank">academic.oup.com → Clinician Perspectives on Ambient Scribes</a></div>
+    <div class="src-item"><span class="src-num">23</span><span class="src-title">Ambient AI Scribes in Psychiatric Documentation — MedRxiv 2025</span><span class="src-pub">MedRxiv Preprint, September 2025</span><a class="src-link" href="https://www.medrxiv.org/content/10.1101/2025.09.21.25336260.full.pdf" target="_blank">medrxiv.org → Ambient AI in Psychiatric Documentation</a></div>
+    <div class="src-item"><span class="src-num">24</span><span class="src-title">Best AI Medical Scribe 2026 — Glass Health</span><span class="src-pub">Glass Health, May 2026</span><a class="src-link" href="https://glass.health/resources/best-ai-medical-scribe" target="_blank">glass.health → Best AI Medical Scribe 2026</a></div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>cirrusAI Notes · Market Research &amp; Product Strategy · May 2026 · CareCloud Confidential</p>
+  <p>24 data sources · Peer-reviewed: JAMA, AJMC, Annals of Emergency Medicine, JMIR, PMC · Industry: AHA, AMA, Menlo Ventures, Black Book, EHR Source</p>
+</div>
+
+</body></html>
